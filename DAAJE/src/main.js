@@ -5,9 +5,13 @@ import App from "./App.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 
+import HomePage from "./views/HomePage.vue";
+
+const routes = [{ path: "/", component: HomePage }];
+
 const router = createRouter({
-  history: createWebHistory,
-  routes: [],
+  history: createWebHistory(),
+  routes,
 });
 
 createApp(App).use(router).mount("#app");
