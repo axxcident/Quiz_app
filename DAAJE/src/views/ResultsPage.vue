@@ -10,7 +10,7 @@
 <script>
 import TheResults from '../components/TheResults.vue';
 
-
-
-</script>
+export default {
+	components: { TheResults },
+}
 </script>
