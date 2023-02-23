@@ -13,3 +13,4 @@ import TheResults from '../components/TheResults.vue';
 
 
 </script>
+</script>
