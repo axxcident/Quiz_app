@@ -6,8 +6,8 @@ const express    = require('express');        // call express
 const app        = express();                 // define our app using express
 const bodyParser = require('body-parser');
 const router     = require('../../../../Projects/serverapp/routes/routes');
-/* const cors       = require('cors');
-const proxy      = require('express-http-proxy') */
+//const cors       = require('cors');
+const proxy      = require('express-http-proxy')
 
 
 // all static served content declared here
@@ -15,7 +15,7 @@ const proxy      = require('express-http-proxy') */
 app.use(express.static('public'));
 
 //decomment to use proxy
-//app.use('/**path', proxy('http://localhost:8080'));
+app.use('/', proxy('http://127.0.0.1:5173/'));
 
 //  Try to allow all CORS
 // app.use(cors());
