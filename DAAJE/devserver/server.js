@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // all of our routes will be prefixed with /api/v1
-app.use('/api/v1', router);
+app.use('/', router);
 
 // <===== Export the ready server =====>
 
