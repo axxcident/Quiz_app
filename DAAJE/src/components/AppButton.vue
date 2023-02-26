@@ -5,7 +5,7 @@
     :class="['app-button', color, size, padding]"
     :style="{ width }"
   >
-    <!-- slot as a placeholder that you pass in content from parent comp. -->
+    <!-- slot as a placeholder that you pass in content from parent component. -->
     <slot></slot>
   </a>
 </template>
