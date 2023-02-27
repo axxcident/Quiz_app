@@ -251,25 +251,25 @@
           {
             "id": 1,
             "label": "A",
-            "text": "Skapad  installerad  uppdaterad  förstörd",
+            "text": "En egenskap som lagrar statisk data",
             "isCorrect": false
           },
           {
             "id": 2,
             "label": "B",
-            "text": "Skapad  monterad  uppdaterad  förstörd",
+            "text": "En egenskap som lagrar dynamisk data som uppdateras av användaren",
             "isCorrect": true
           },
           {
             "id": 3,
             "label": "C",
-            "text": "Skapad  monterad  uppdaterad  avmonterad",
+            "text": "En egenskap som beräknar värden baserat på andra egenskaper i komponenten",
             "isCorrect": false
           },
           {
             "id": 4,
             "label": "D",
-            "text": "Skapad  installerad  uppdaterad  avmonterad",
+            "text": "En egenskap som hanterar händelser som utlöses av användaren",
             "isCorrect": false
           }
         ]
