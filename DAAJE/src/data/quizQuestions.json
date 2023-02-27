@@ -1,0 +1,309 @@
+[
+  {
+    "id": 1,
+    "img": "../assets/Vuejs_Logo_2.svg.png",
+    "name": "Vue",
+    "questions": [
+      {
+        "id": 1,
+        "text": "Vad är Vue.js?",
+        "options": [
+          {
+            "id": 1,
+            "label": "A",
+            "text": "Ett server-side scriptspråk",
+            "isCorrect": false
+          },
+          {
+            "id": 2,
+            "label": "B",
+            "text": "Ett progressivt JavaScript-ramverk",
+            "isCorrect": true
+          },
+          {
+            "id": 3,
+            "label": "C",
+            "text": "En typ av databashanteringssystem",
+            "isCorrect": false
+          },
+          {
+            "id": 4,
+            "label": "D",
+            "text": "Ett operativsystemskärna",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "Vad är den virtuella DOM i Vue.js?",
+        "options": [
+          {
+            "id": 1,
+            "label": "A",
+            "text": "En realtids datatrafik",
+            "isCorrect": false
+          },
+          {
+            "id": 2,
+            "label": "B",
+            "text": "En abstraktion av den faktiska DOM:en",
+            "isCorrect": true
+          },
+          {
+            "id": 3,
+            "label": "C",
+            "text": "Ett webbaserat verktyg för gränssnittsdesign",
+            "isCorrect": false
+          },
+          {
+            "id": 4,
+            "label": "D",
+            "text": "Ett maskininlärnings algoritm",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Vilket är den grundläggande syntaxen för att skapa en Vue-komponent?",
+        "options": [
+          {
+            "id": 1,
+            "label": "A",
+            "text": "<router-link>  <router-view>",
+            "isCorrect": false
+          },
+          {
+            "id": 2,
+            "label": "B",
+            "text": "<body>  <head>  <div> ",
+            "isCorrect": false
+          },
+          {
+            "id": 3,
+            "label": "C",
+            "text": "En typ av databashanteringssystem",
+            "isCorrect": false
+          },
+          {
+            "id": 4,
+            "label": "D",
+            "text": "<template>  <script>  <style>",
+            "isCorrect": true
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "text": "Vad är skillnaden mellan Vue.js och React.js?",
+        "options": [
+          {
+            "id": 1,
+            "label": "A",
+            "text": "Vue använder en virtuell DOM  medan React inte gör det",
+            "isCorrect": true
+          },
+          {
+            "id": 2,
+            "label": "B",
+            "text": "React är enklare att lära sig än Vue",
+            "isCorrect": false
+          },
+          {
+            "id": 3,
+            "label": "C",
+            "text": "Vue är enklare att använda med Typescript än React ",
+            "isCorrect": false
+          },
+          {
+            "id": 4,
+            "label": "D",
+            "text": "React erbjuder mer möjligheter för serverrendering än Vue",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "text": "Vilken av följande metoder används för att ladda data från en server i en Vue-komponent? ",
+        "options": [
+          {
+            "id": 1,
+            "label": "A",
+            "text": "v-for",
+            "isCorrect": false
+          },
+          {
+            "id": 2,
+            "label": "B",
+            "text": "v-on",
+            "isCorrect": false
+          },
+          {
+            "id": 3,
+            "label": "C",
+            "text": "v-bind",
+            "isCorrect": false
+          },
+          {
+            "id": 4,
+            "label": "D",
+            "text": "Axios",
+            "isCorrect": true
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "text": "Vilket alternativ beskriver en computed property i Vue? ",
+        "options": [
+          {
+            "id": 1,
+            "label": "A",
+            "text": "En funktion som utför en asynkron operation",
+            "isCorrect": false
+          },
+          {
+            "id": 2,
+            "label": "B",
+            "text": "En funktion som beräknar och returnerar ett värde baserat på en eller flera egenskaper",
+            "isCorrect": true
+          },
+          {
+            "id": 3,
+            "label": "C",
+            "text": "En funktion som används för att ändra data i en Vue-komponent",
+            "isCorrect": false
+          },
+          {
+            "id": 4,
+            "label": "D",
+            "text": "Props och state används inte i Vue.js",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "text": "Vad är skillnaden mellan v-bind och v-model i Vue.js?",
+        "options": [
+          {
+            "id": 1,
+            "label": "A",
+            "text": "v-bind används för att binda ett värde till en elements attribut  medan v-model används för tvåvägs dataväxling mellan en formulärkomponent och dess datamodell",
+            "isCorrect": true
+          },
+          {
+            "id": 2,
+            "label": "B",
+            "text": "v-model används för att binda ett värde till en elements attribut  medan v-bind används för tvåvägs dataväxling mellan en formulärkomponent och dess datamodell",
+            "isCorrect": false
+          },
+          {
+            "id": 3,
+            "label": "C",
+            "text": "v-bind och v-model är samma sak i Vue.js",
+            "isCorrect": false
+          },
+          {
+            "id": 4,
+            "label": "D",
+            "text": "v-bind och v-model används inte i Vue.js",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "text": "Vad är en Vue.js-komponent?",
+        "options": [
+          {
+            "id": 1,
+            "label": "A",
+            "text": "En datamodell som hanterar staten i en Vue.js-applikation",
+            "isCorrect": false
+          },
+          {
+            "id": 2,
+            "label": "B",
+            "text": "En abstraktion av en HTML-element som kan återanvändas och definieras med egen logik och utseende",
+            "isCorrect": true
+          },
+          {
+            "id": 3,
+            "label": "C",
+            "text": "En metod för att kommunicera med en server från en Vue.js-applikation ",
+            "isCorrect": false
+          },
+          {
+            "id": 4,
+            "label": "D",
+            "text": "En typ av datastruktur i Vue.js",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "text": "Vad är en computed egenskap för en Vue.js-komponent?",
+        "options": [
+          {
+            "id": 1,
+            "label": "A",
+            "text": "Skapad  installerad  uppdaterad  förstörd",
+            "isCorrect": false
+          },
+          {
+            "id": 2,
+            "label": "B",
+            "text": "Skapad  monterad  uppdaterad  förstörd",
+            "isCorrect": true
+          },
+          {
+            "id": 3,
+            "label": "C",
+            "text": "Skapad  monterad  uppdaterad  avmonterad",
+            "isCorrect": false
+          },
+          {
+            "id": 4,
+            "label": "D",
+            "text": "Skapad  installerad  uppdaterad  avmonterad",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "text": "Vad är syftet med v-for?",
+        "options": [
+          {
+            "id": 1,
+            "label": "A",
+            "text": "Det används för att rendera en block av kod flera gånger baserat på en array av data",
+            "isCorrect": true
+          },
+          {
+            "id": 2,
+            "label": "B",
+            "text": "Det används för att skapa en anpassad direktiv i Vue.js",
+            "isCorrect": false
+          },
+          {
+            "id": 3,
+            "label": "C",
+            "text": "Det används för att binda ett värde till en elements attribut",
+            "isCorrect": false
+          },
+          {
+            "id": 4,
+            "label": "D",
+            "text": "Det används inte i Vue.js",
+            "isCorrect": false
+          }
+        ]
+      }
+    ]
+  }
+]
