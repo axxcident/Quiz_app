@@ -5,7 +5,7 @@
 const express    = require('express');        // call express
 const app        = express();                 // define our app using express
 const bodyParser = require('body-parser');
-const router     = require('../../../../Projects/serverapp/routes/routes');
+const router     = require('./routes/routes');
 //const cors       = require('cors');
 const proxy      = require('express-http-proxy')
 
