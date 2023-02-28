@@ -1,32 +1,35 @@
 // BASE SERVER SETUP
 // =============================================================================
 
-// call the packages we need
-const express    = require('express');        // call express
-const app        = express();                 // define our app using express
+const express    = require('express');        
+const app        = express();                 
 const bodyParser = require('body-parser');
-const router     = require('../../../../Projects/serverapp/routes/routes');
-/* const cors       = require('cors');
-const proxy      = require('express-http-proxy') */
+const router     = require('./routes/routes');
+const cors       = require('cors');
+const proxy      = require('express-http-proxy')
 
 
 // all static served content declared here
 
-app.use(express.static('public'));
+//app.use(express.static('*/*'));
 
-//decomment to use proxy
-//app.use('/**path', proxy('http://localhost:8080'));
+// Proxy definition
+//app.use('/', proxy('http://127.0.0.1:5173/'));
 
-//  Try to allow all CORS
-// app.use(cors());
+//  Allow for CORS. Use cors() as middleware to allow for cors on single routes.
+const corsOptions = {
+    origin: 'http://127.0.0.1:5173',
+    optionsSuccessStatus: 200 
+  }
+app.use(cors(corsOptions));
 
 
 //parsing for middleware functions
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// all of our routes will be prefixed with /api/v1
-app.use('/api/v1', router);
+// all of our routes will be prefixed with '/'
+app.use('/', router);
 
 // <===== Export the ready server =====>
 
