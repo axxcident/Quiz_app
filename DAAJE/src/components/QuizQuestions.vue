@@ -3,7 +3,10 @@
 </template>
 
 <script setup>
-import questions from "../data/quizQuestions.json"
+// import questions from "../data/quizQuestions.json"
+
+
+
 import QuizCard from "./QuizCard.vue";
 import { ref } from 'vue'
 
