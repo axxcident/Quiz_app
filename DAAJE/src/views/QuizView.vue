@@ -1,28 +1,20 @@
+<script setup>
+import { useRoute } from 'vue-router';
+import { ref } from 'vue';
+import TheQuestion from '../components/TheQuestion.vue';
+import QuizHeader from '../components/QuizHeader.vue';
+
+const currentQuestionIndex = ref(0);
+
+const route = useRoute();
+const quizId = parseInt(route.params.id);
+</script>
+
 <template>
 	<div>
-		<header>
-			<h5>Fråga 1/10</h5>
-			<div class="progress">
-				<div class="completion"></div>
-			</div>
-		</header>
+		<QuizHeader />
+		<div>
+			<TheQuestion />
+		</div>
 	</div>
 </template>
-
-<style>
-header {
-	margin: 1rem 0;
-}
-
-.progress {
-	width: 16rem;
-	height: 2rem;
-	border: 3px solid purple;
-}
-
-.completion {
-	height: 100%;
-	width: 66%;
-	background-color: purple;
-}
-</style>
