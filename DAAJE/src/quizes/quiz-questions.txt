@@ -47,8 +47,7 @@ C. v-bind
 D. Axios
           
 correct answers:  D 
-
-id: 6 
+ id: 6 
 question: Vilket alternativ beskriver en computed property i Vue? 
 options:  
 A. En funktion som utför en asynkron operation 

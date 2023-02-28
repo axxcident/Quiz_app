@@ -8,6 +8,18 @@
   </head>
   <body>
     <div id="app"></div>
+    <button type="submit" onclick="tryPost()">POST</button>
     <script type="module" src="/src/main.js"></script>
+    <script>
+      function tryPost() {
+        fetch('http://localhost:8080/post', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ msg: "this is a post!"})
+        }).then((res) => {console.log(res.json());})
+      }
+    </script>
   </body>
 </html>
