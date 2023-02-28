@@ -1,0 +1,191 @@
+id: 1 
+question: Vad är Vue.js? 
+options:  
+A. Ett server-side scriptspråk 
+B. Ett progressivt JavaScript-ramverk 
+C. En typ av databashanteringssystem 
+D. Ett operativsystemskärna
+          
+correct answers:  B 
+
+id: 2 
+question: Vad är den virtuella DOM i Vue.js? 
+options:  
+A. En realtids datatrafik 
+B. En abstraktion av den faktiska DOM:en 
+C. Ett webbaserat verktyg för gränssnittsdesign 
+D. Ett maskininlärnings algoritm
+          
+correct answers:  B 
+
+id: 3 
+question: Vilket är den grundläggande syntaxen för att skapa en Vue-komponent? 
+options:  
+A. <router-link>  <router-view> 
+B. <p>  <span>  <h1> 
+C. <body>  <head>  <div> 
+D. <template>  <script>  <style>
+          
+correct answers:  D 
+
+id: 4 
+question: Vad är skillnaden mellan Vue.js och React.js? 
+options: 
+A. Vue använder en virtuell DOM  medan React inte gör det 
+B. React är enklare att lära sig än Vue 
+C. Vue är enklare att använda med Typescript än React 
+D. React erbjuder mer möjligheter för serverrendering än Vue
+          
+correct answers:  A 
+ 
+id: 5 
+question: Vilken av följande metoder används för att ladda data från en server i en Vue-komponent? 
+options:  
+A. v-for 
+B. v-on 
+C. v-bind 
+D. Axios
+          
+correct answers:  D 
+ id: 6 
+question: Vilket alternativ beskriver en computed property i Vue? 
+options:  
+A. En funktion som utför en asynkron operation 
+B. En funktion som beräknar och returnerar ett värde baserat på en eller flera egenskaper 
+C. En funktion som används för att ändra data i en Vue-komponent 
+D. Props och state används inte i Vue.js
+          
+correct answers:  B 
+   
+id: 7 
+question: Vad är skillnaden mellan v-bind och v-model i Vue.js? 
+options:  
+A. v-bind används för att binda ett värde till en elements attribut  medan v-model används för tvåvägs dataväxling mellan en formulärkomponent och dess datamodell 
+B. v-model används för att binda ett värde till en elements attribut  medan v-bind används för tvåvägs dataväxling mellan en formulärkomponent och dess datamodell 
+C. v-bind och v-model är samma sak i Vue.js 
+D. v-bind och v-model används inte i Vue.js
+          
+correct answers:  A 
+
+id: 8 
+question: Vad är en Vue.js-komponent? 
+options:  
+A. En datamodell som hanterar staten i en Vue.js-applikation 
+B. En abstraktion av en HTML-element som kan återanvändas och definieras med egen logik och utseende 
+C. En metod för att kommunicera med en server från en Vue.js-applikation 
+D. En typ av datastruktur i Vue.js
+          
+correct answers:  B 
+ 
+id: 9 
+question: Vad är en computed egenskap för en Vue.js-komponent? 
+options:  
+A. Skapad  installerad  uppdaterad  förstörd 
+B. Skapad  monterad  uppdaterad  förstörd 
+C. Skapad  monterad  uppdaterad  avmonterad 
+D. Skapad  installerad  uppdaterad  avmonterad
+          
+correct answers:  C 
+
+id: 10 
+question: Vad är syftet med v-for? 
+options:  
+A. Det används för att rendera en block av kod flera gånger baserat på en array av data 
+B. Det används för att skapa en anpassad direktiv i Vue.js 
+C. Det används för att binda ett värde till en elements attribut 
+D. Det används inte i Vue.js
+  
+correct answers:  A 
+
+id: 11
+question: Vilken av följande är en av de grundläggande byggstenarna i Vue.js?
+A. Templates
+B. Components
+C. Services
+D. Controllers
+
+correct answer: B
+
+id: 12
+question: Vad kallas en funktion som används för att modifiera data i en Vue-komponent?
+A. Method
+B. Prop
+C. Watcher
+D. Filter
+
+correct answer: A
+
+id: 13
+question: Vad kallas Vue.js-funktionen som används för att binda data till en DOM-attribut?
+A. v-bind
+B. v-model
+C. v-for
+D. v-if
+
+correct answer: A
+
+id: 14
+question: Vad är Vuex i samband med Vue.js?
+A. Ett verktyg för att skapa animationer
+B. Ett bibliotek för att hantera statisk data i Vue-komponenter
+C. En stilguide för Vue.js
+D. En ramverk för att skapa server-side rendering i Vue.js
+
+correct answer: B
+
+id: 15
+question: Vad kallas funktionen i Vue.js som används för att hantera händelser i en komponent?
+A. v-on
+B. v-bind
+C. v-model
+D. v-if
+
+correct answer: A
+
+id: 16
+question: Vilken av följande är ett sätt att skapa en dynamisk lista med data i Vue.js?
+A. v-bind
+B. v-model
+C. v-for
+D. v-if
+
+correct answer: C
+
+id: 17
+question: Vilken av följande är en av fördelarna med att använda Vue.js-komponenter?
+A. Återanvändbarhet
+B. Ökad prestanda
+C. Enkelhet
+D. Inga beroenden
+
+correct answer: A
+
+id: 18
+question: Vad kallas den Vue.js-funktion som används för att hämta data från en API?
+A. Axios
+B. Fetch
+C. Ajax
+D. Get
+
+correct answer: A
+
+id: 19
+question: Vilken av följande är en av fördelarna med att använda Vue.js framför andra JavaScript-ramverk?
+A. Bättre prestanda
+B. Större community
+C. Mer flexibilitet
+D. Enklare syntax
+
+correct answer: C 
+
+id: 20
+question: Vad kallas den Vue.js-funktion som används för att skapa en observerbar variabel?
+A. v-model
+B. v-for
+C. v-if
+D. reactive
+
+correct answer: D
+
+
+
