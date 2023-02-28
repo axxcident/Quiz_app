@@ -5,13 +5,11 @@ import QuizQuestions from '../components/QuizQuestions.vue';
 
 <template>
     <Suspense>
-        <div class="row">
-            <div class="col">
-                <h1>Quiz page view</h1>
-                <div class="quiz-container">
-                    <QuizQuestions />
-                    <QuizForm />
-                </div>
+        <div>
+            <h1>Quiz page view</h1>
+            <div class="quiz-container">
+                <QuizQuestions />
+                <QuizForm />
             </div>
         </div>
     </Suspense>
