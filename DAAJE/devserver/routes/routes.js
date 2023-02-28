@@ -16,7 +16,7 @@ router.post("/post", function (req, res) {
   res.json({ status: "200 OK", content: req.body });
 });
 router.get("/quiz_questions", (req, res) => {
-  res.status("200").send(questions);
+  res.status(200).send(questions);
 });
 // ----------------------------------------------------
 
