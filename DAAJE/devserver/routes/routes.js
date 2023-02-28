@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const headers = require('./headers');
+const questions = require('../public/img/data/quizQuestions.json')
 
 // REGISTER OUR ROUTES -------------------------------
 
@@ -14,7 +15,9 @@ router.post('/post', function(req, res) {
     console.log(req.body);
     res.json({ status: '200 OK', content: req.body });
   });
-
+router.get('/quiz_questions', (req, res) => {
+  res.status('200').send(questions);
+});
 // ----------------------------------------------------
 
 module.exports = router;
