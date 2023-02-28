@@ -2,15 +2,23 @@
 	<QuizCard v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
 </template>
 
-<script setup>
-// import questions from "../data/quizQuestions.json"
-
-
-
+<script>
+import axios from 'axios'
 import QuizCard from "./QuizCard.vue";
 import { ref } from 'vue'
+// import questions from "../data/quizQuestions.json"
 
-const quizes = ref(questions);
+export default {
+	async setup() {
+		const result = await axios.get('http://127.0.0.1:8080/quiz_questions/')
+		const quizes = ref(result.data);
+		console.log(result.data)
+		console.log(quizes.value)
+
+		return { quizes }
+	}
+}
+
 </script>
 
 <style scoped></style>
