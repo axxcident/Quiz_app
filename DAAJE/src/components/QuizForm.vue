@@ -1,8 +1,7 @@
 <template>
     <div>
-        <button @click="showForm = true">Create Quiz</button
-        ><!---Click event som triggar igång formen-->
-
+        <button @click="showForm = true">Create Quiz</button>
+        <!---Click event som triggar igång formen-->
         <form v-if="showForm" @submit.prevent="submitForm">
             <!---Submitprevent så den kan routas till egen backend-->
             <!---Gör en V-if som initialt gömmer formen som sen blir triggad av knappklicket-->
@@ -17,39 +16,108 @@
                     type="text"
                     v-model="question.text"
                     required
-                /><!---Använder enkel V-model och binder den till question arrayen-->
-                <label :for="'answer-' + index">Answer {{ index + 1 }}</label>
-                <input
-                    :id="'answer-' + index"
-                    type="text"
-                    v-model="question.answer"
-                    required
                 />
+                <div
+                    v-for="(answer, answerIndex) in question.answers"
+                    :key="answerIndex"
+                >
+                    <label :for="'answer-' + index + '-' + answerIndex"
+                        >Answer {{ answerIndex + 1 }}</label
+                    >
+                    <input
+                        :id="'answer-' + index + '-' + answerIndex"
+                        type="text"
+                        v-model="answer.text"
+                        required
+                    /><!---Använder enkel V-model och binder den till question arrayen, även en radiobutton som låter skaparen välja vilket av svaren som är rätt-->
+                    <input
+                        :id="'correct-answer-' + index"
+                        type="radio"
+                        :value="answerIndex"
+                        v-model="question.correctAnswer"
+                        required
+                    />
+                    <label :for="'correct-answer-' + index"
+                        >Correct answer</label
+                    >
+                </div>
             </div>
             <div>
-                <button type="button" @click="addQuestion">Add Question</button
-                ><!---Enkelt clickevent för att lägga till råga-->
+                <button type="button" @click="addQuestion">Add Question</button>
                 <button type="submit">Create</button>
             </div>
             <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
-            <!--Tanke om något error message ifall inte det går att skapa quizet, men behöver hjälp med backend konfig-->
         </form>
     </div>
 </template>
-
+<!--Tanke om något error message ifall inte det går att skapa quizet, men behöver hjälp med backend konfig-->
 <script>
     export default {
         data() {
             return {
                 showForm: false, //False initialt, tills användarinteraktion och då dyker det upp
-                questions: [{ text: '', answer: '' }], //Array där texten kommer från användaren
-                createdQuiz: null, //Null initialt måste hitta en lösning på hur det skapas ett quiz via backend
-                errorMessage: '' //Felmeddelande om inte quizet går att visas
+                questions: [
+                    {
+                        text: '',
+                        answers: [
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' }
+                        ],
+                        correctAnswer: 0 //Flera svarsalternativ och den som har correctanswer intryckt blir räknas
+                    }
+                ],
+                createdQuiz: null,
+                errorMessage: ''
             }
         },
         methods: {
             addQuestion() {
-                this.questions.push({ text: '', answer: '' }) //Enkel funktion för att kunna lägga till obegränsat med frågor
+                this.questions.push({
+                    text: '',
+                    answers: [
+                        { text: '' },
+                        { text: '' },
+                        { text: '' },
+                        { text: '' }
+                    ],
+                    correctAnswer: 0
+                })
+            },
+            async submitForm() {
+                //Async fetch till backenden, får gärna kika om de är till rätt host
+                try {
+                    const response = await fetch(
+                        'http://localhost:8080/createquiz',
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(this.questions)
+                        }
+                    )
+                    const data = await response.json()
+                    console.log(data)
+                    this.showForm = false
+                    this.questions = [
+                        {
+                            text: '',
+                            answers: [
+                                { text: '' },
+                                { text: '' },
+                                { text: '' },
+                                { text: '' }
+                            ],
+                            correctAnswer: 0
+                        }
+                    ]
+                } catch (error) {
+                    //Enkel catch
+                    console.error(error)
+                    this.errorMessage = 'Could not create quiz'
+                }
             }
         }
     }
@@ -63,9 +131,11 @@
         margin: 0 auto;
         max-width: 600px;
     }
+
     form input {
         margin-bottom: 10px;
     }
+
     .error {
         color: red;
         margin-top: 10px;
