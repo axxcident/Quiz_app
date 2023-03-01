@@ -4,15 +4,15 @@ import QuizQuestions from '../components/QuizQuestions.vue';
 </script>
 
 <template>
-    <div class="row">
-        <div class="col">
+    <Suspense>
+        <div>
             <h1>Quiz page view</h1>
             <div class="quiz-container">
                 <QuizQuestions />
                 <QuizForm />
             </div>
         </div>
-    </div>
+    </Suspense>
 </template>
 
 <style scoped>
