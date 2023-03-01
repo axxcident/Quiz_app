@@ -1,7 +1,8 @@
-const express = require("express");
-const router = express.Router();
-const headers = require("./headers");
+const express   = require("express");
+const router    = express.Router();
+const headers   = require("./headers");
 const questions = require("../public/data/quizQuestions.json");
+
 
 // REGISTER OUR ROUTES -------------------------------
 
