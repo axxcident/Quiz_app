@@ -11,10 +11,10 @@ export default defineConfig({
         target: 'http://localhost:8080/post',
         changeOrigin: true,
       },
-      '/public/img': {
-        target: 'http://localhost:8080/public/img',
+      '/img': {
+        target: 'http://localhost:8080/',
         changeOrigin: true,
-      }
+      },
     }
   }
 })
