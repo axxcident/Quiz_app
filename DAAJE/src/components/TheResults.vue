@@ -54,7 +54,7 @@ export default {
 			</div>
 			<div class="col-4">
 				<h3>
-					Enskilda svar av frågor:
+					Enskilda resultat av frågor:
 				</h3>
 				<!-- <p v-for="(data, index) in fetchedResultData" :key="data.id">{{ index + 1 }}, {{ data.name }}</p> -->
 			</div>
