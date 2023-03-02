@@ -30,12 +30,18 @@ const emitSelectedChoise = (isCorrect) => {
 
 .question {
 	margin-bottom: 1rem;
-	color: #d9d7d7;
+	color: white;
+}
+
+.options-container {
+	display: flex;
+	flex-direction: column;
+	color: white;
+	gap: 1rem 0;
 }
 
 .option {
 	display: flex;
-	margin-bottom: 1rem;
 	cursor: pointer;
 }
 
@@ -43,13 +49,15 @@ const emitSelectedChoise = (isCorrect) => {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: rgba(128, 0, 128, 0.60);
+	background-image: linear-gradient(180deg, #5b6aac 0%, #5f0a87 84%);
+	border-radius: 5rem;
 	width: 2rem;
 	height: 2rem;
 }
 
 .option-value {
-	background-color: lightgrey;
+	border-radius: 5rem;
+	color: white;
 	width: 100%;
 	padding: 0 1rem;
 	height: 2rem;
