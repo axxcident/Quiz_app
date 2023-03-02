@@ -1,6 +1,5 @@
 <script>
 import Chart from 'chart.js/auto'
-import planetChartData from '../results-data';
 
 export default {
 	name: 'TheResults',
@@ -10,7 +9,6 @@ export default {
 	},
 	data() {
 		return {
-			planetChartData: planetChartData,
 			fetchedResultData: [],
 		}
 	},
@@ -24,9 +22,24 @@ export default {
 		}
 	},
 	mounted() {
-		const ctx = document.getElementById('myChart');
-		new Chart(ctx, this.planetChartData);
 		this.fetchResults();
+		const ctx = document.getElementById('myChart');
+		const MyChart = new Chart(ctx, {
+			type: "pie",
+			data: {
+				labels: ["Rätt", "Totala frågor"],
+				datasets: [
+					{
+						label: "Resultat av Quiz",
+						data: [this.numberOfCorrectAnswers, this.quizLength],
+						// backgroundColor: "rgba(54,73,93,.5)",
+						// borderColor: "#36495d",
+						borderWidth: 3,
+					},
+				],
+			},
+		})
+		MyChart;
 	}
 }
 
@@ -37,7 +50,6 @@ export default {
 		<div class="row">
 			<div class="col-8">
 				<h3>Resultat av ditt quiz!</h3>
-				<p>{{ numberOfCorrectAnswers }} / {{ quizLength }}</p>
 				<canvas id="myChart"></canvas>
 			</div>
 			<div class="col-4">
