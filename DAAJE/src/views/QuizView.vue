@@ -1,11 +1,14 @@
 <script setup>
 import { useRoute } from 'vue-router';
-import { ref, watch, computed } from 'vue';
+import { ref, computed } from 'vue';
 import TheQuestion from '../components/TheQuestion.vue';
+import TheResults from '../components/TheResults.vue';
 import QuizHeader from '../components/QuizHeader.vue';
 import axios from 'axios';
 
 const currentQuestionIndex = ref(0);
+const numberOfCorrectAnswers = ref(0);
+const showResults = ref(false)
 
 const route = useRoute();
 const paramsId = parseInt(route.params.id);
@@ -17,14 +20,26 @@ const quizToShow = quizes.value.find(quiz => quiz.id === paramsId);
 const quizStatus = computed(() => `${currentQuestionIndex.value}/${quizToShow.questions.length}`)
 const completionPercentage = computed(() => `${currentQuestionIndex.value / quizToShow.questions.length * 100}%`)
 
+const onChoiceSelected = (isCorrect) => {
+	if (isCorrect) {
+		numberOfCorrectAnswers.value++;
+	}
+
+	if (quizToShow.questions.length - 1 === currentQuestionIndex.value) {
+		showResults.value = true
+	}
+
+	currentQuestionIndex.value++;
+}
 </script>
 
 <template>
 	<div>
 		<QuizHeader :quizStatus="quizStatus" :completionPercentage="completionPercentage" />
 		<div>
-			<TheQuestion :question="quizToShow.questions[currentQuestionIndex]" />
+			<TheQuestion v-if="!showResults" :question="quizToShow.questions[currentQuestionIndex]"
+				@selectChoice="onChoiceSelected" />
+			<TheResults v-else :quizLength="quizToShow.questions.length" :numberOfCorrectAnswers="numberOfCorrectAnswers" />
 		</div>
-		<button @click="currentQuestionIndex++">Nästa fråga</button>
 	</div>
 </template>
