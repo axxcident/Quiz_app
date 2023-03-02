@@ -1,35 +1,19 @@
-<script setup></script>
+<script setup>
+import { defineProps } from 'vue';
+const { question } = defineProps(['question']);
+</script>
 
 <template>
 	<div class="question-container">
 		<h3 class="question">
-			Vad är Vue.js?
-			<!-- {{ question.text }} -->
+			{{ question.text }}
 		</h3>
 	</div>
 	<div class="options-container">
-		<div class="option">
-			<p class="option-label">A</p>
+		<div v-for="option in question.options" class="option">
+			<p class="option-label">{{ option.label }}</p>
 			<div class="option-value">
-				Svar ...
-			</div>
-		</div>
-		<div class="option">
-			<p class="option-label">B</p>
-			<div class="option-value">
-				Svar ...
-			</div>
-		</div>
-		<div class="option">
-			<p class="option-label">C</p>
-			<div class="option-value">
-				Svar ...
-			</div>
-		</div>
-		<div class="option">
-			<p class="option-label">D</p>
-			<div class="option-value">
-				Svar ...
+				{{ option.text }}
 			</div>
 		</div>
 	</div>
