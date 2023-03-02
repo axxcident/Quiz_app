@@ -30,6 +30,7 @@ const emitSelectedChoise = (isCorrect) => {
 
 .question {
 	margin-bottom: 1rem;
+	color: #d9d7d7;
 }
 
 .option {

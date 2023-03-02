@@ -18,6 +18,10 @@ header {
 	margin: 1rem 0;
 }
 
+h5 {
+	color: #d9d7d7;
+}
+
 .progress {
 	width: 16rem;
 	height: 2rem;
