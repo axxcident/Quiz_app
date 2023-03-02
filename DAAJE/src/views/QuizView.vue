@@ -7,7 +7,7 @@ import QuizHeader from '../components/QuizHeader.vue';
 import axios from 'axios';
 
 const currentQuestionIndex = ref(0);
-const numberOfCorrectAnswers = ref(0);
+const sumOfCorrectAnswers = ref(0);
 const showResults = ref(false)
 
 const route = useRoute();
@@ -22,7 +22,7 @@ const completionPercentage = computed(() => `${currentQuestionIndex.value / quiz
 
 const onChoiceSelected = (isCorrect) => {
 	if (isCorrect) {
-		numberOfCorrectAnswers.value++;
+		sumOfCorrectAnswers.value++;
 	}
 
 	if (quizToShow.questions.length - 1 === currentQuestionIndex.value) {
@@ -39,7 +39,7 @@ const onChoiceSelected = (isCorrect) => {
 		<div>
 			<TheQuestion v-if="!showResults" :question="quizToShow.questions[currentQuestionIndex]"
 				@selectChoice="onChoiceSelected" />
-			<TheResults v-else :quizLength="quizToShow.questions.length" :numberOfCorrectAnswers="numberOfCorrectAnswers" />
+			<TheResults v-else :quizLength="quizToShow.questions.length" :sumOfCorrectAnswers="sumOfCorrectAnswers" />
 		</div>
 	</div>
 </template>

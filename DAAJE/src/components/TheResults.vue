@@ -5,7 +5,7 @@ export default {
 	name: 'TheResults',
 	props: {
 		quizLength: Number,
-		numberOfCorrectAnswers: Number
+		sumOfCorrectAnswers: Number
 	},
 	data() {
 		return {
@@ -31,7 +31,7 @@ export default {
 				datasets: [
 					{
 						label: "Resultat av Quiz",
-						data: [this.numberOfCorrectAnswers, this.quizLength],
+						data: [this.sumOfCorrectAnswers, this.quizLength],
 						// backgroundColor: "rgba(54,73,93,.5)",
 						// borderColor: "#36495d",
 						borderWidth: 3,
