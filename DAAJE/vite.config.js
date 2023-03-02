@@ -11,6 +11,10 @@ export default defineConfig({
         target: 'http://localhost:8080/post',
         changeOrigin: true,
       },
+      '/put': {
+        target: 'http://localhost:8080/put',
+        changeOrigin: true,
+      },
       '/img': {
         target: 'http://localhost:8080/',
         changeOrigin: true,

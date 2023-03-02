@@ -9,6 +9,7 @@
     "express-http-proxy": "^1.6.3",
     "mongoose": "^6.7.3",
     "nodemon": "^2.0.20",
+    "uuid": "^9.0.0",
     "validator": "^13.7.0"
   }
 }
