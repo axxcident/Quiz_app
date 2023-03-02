@@ -1,14 +1,14 @@
 <script setup>
 import { defineProps } from 'vue';
 
-const { quizStatus } = defineProps(['quizStatus'])
+const { quizStatus, completionPercentage } = defineProps(['quizStatus', 'completionPercentage'])
 </script>
 
 <template>
 	<header>
 		<h5>Fråga {{ quizStatus }}</h5>
 		<div class="progress">
-			<div class="completion"></div>
+			<div class="completion" :style="{ width: completionPercentage }"></div>
 		</div>
 	</header>
 </template>

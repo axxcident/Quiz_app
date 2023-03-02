@@ -15,12 +15,13 @@ const quizes = ref(result.data);
 
 const quizToShow = quizes.value.find(quiz => quiz.id === paramsId);
 const quizStatus = computed(() => `${currentQuestionIndex.value}/${quizToShow.questions.length}`)
+const completionPercentage = computed(() => `${currentQuestionIndex.value / quizToShow.questions.length * 100}%`)
 
 </script>
 
 <template>
 	<div>
-		<QuizHeader :quizStatus="quizStatus" />
+		<QuizHeader :quizStatus="quizStatus" :completionPercentage="completionPercentage" />
 		<div>
 			<TheQuestion :question="quizToShow.questions[currentQuestionIndex]" />
 		</div>
