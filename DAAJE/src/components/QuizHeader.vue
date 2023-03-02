@@ -1,6 +1,12 @@
+<script setup>
+import { defineProps } from 'vue';
+
+const { quizStatus } = defineProps(['quizStatus'])
+</script>
+
 <template>
 	<header>
-		<h5>Fråga 1/10</h5>
+		<h5>Fråga {{ quizStatus }}</h5>
 		<div class="progress">
 			<div class="completion"></div>
 		</div>
