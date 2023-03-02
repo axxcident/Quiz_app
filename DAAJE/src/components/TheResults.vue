@@ -27,7 +27,7 @@ export default {
 		const MyChart = new Chart(ctx, {
 			type: "pie",
 			data: {
-				labels: ["Rätt", "Totala frågor"],
+				labels: ["Rätt svar", "Totala frågor"],
 				datasets: [
 					{
 						label: "Resultat av Quiz",
