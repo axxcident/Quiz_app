@@ -2,7 +2,8 @@
 	<RouterLink to="/">Home</RouterLink> |
 	<RouterLink to="/about">About</RouterLink> |
 	<RouterLink to="/quiz">Quiz</RouterLink> |
-	<RouterLink to="/results">Results</RouterLink>
+	<RouterLink to="/results">Results</RouterLink> |
+	<RouterLink to="/questionspage">QuestionsPage</RouterLink>
 
 	<div class="container">
 		<Suspense>

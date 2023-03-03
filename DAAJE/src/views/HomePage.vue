@@ -71,7 +71,7 @@ export default {
   color: #d9d7d7;
 }
 .main-content {
-  height: 100%;
+  height: 100vh;
   margin: 0 -20px;
   padding: 120px 20px 0 20px;
   border-top-left-radius: 40px;
@@ -87,5 +87,4 @@ export default {
   flex-direction: column;
   gap: 1rem;
 }
-
 </style>
