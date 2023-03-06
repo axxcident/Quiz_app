@@ -1,7 +1,6 @@
-const express         = require("express");
-const router          = express.Router();
-const { headers }     = require("./middleware");
-const mwFunctions     = require("./middleware");
+const express           = require("express");
+const router            = express.Router();
+const mwFunction        = require("./middleware");
 
 // REGISTER OUR ROUTES -------------------------------
 
@@ -18,7 +17,7 @@ router.post("/post", function (req, res) {
 });
 
 /* POST quiz. Handler fn writes the post body into temporary database */
-router.post("/post/create_quiz", mwFunctions.addNewQuiz());
+router.post("/post/create_quiz", mwFunction.assignQuizId);
 
 /* PUT edit quiz. Handler takes a quiz id as last parameter and overwrites corresponding quiz in the database.
    If no ID is present in the url(since it might be unknown att the time of request) search the db and redirect
@@ -28,7 +27,7 @@ router.put("/post/edit_quiz/:id?");
 router.put("/post/edit_quiz/:id");
 
 /* GET request for quiz content */
-router.get("/quiz_questions", mwFunctions.getMockQuestions());
+router.get("/quiz_questions", mwFunction.getMockQuestions);
 
 /* GET request for any database folder and file */
 router.get("/:folder/:item", (req, res) => {
