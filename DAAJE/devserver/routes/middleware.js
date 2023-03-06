@@ -20,6 +20,9 @@ const mwFunctions = {
 	getMockQuestions: (req, res) => {
 			res.status(200).send(mockQuestions);
 		},
+	addNewQuiz: (req, res) => {
+   
+	},
 };
 
 module.exports = mwFunctions;

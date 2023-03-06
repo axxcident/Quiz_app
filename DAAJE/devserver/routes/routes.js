@@ -6,7 +6,7 @@ const mwFunctions     = require("./middleware");
 // REGISTER OUR ROUTES -------------------------------
 
 // Head
-router.get("/", function (req, res, next) {
+router.get("/", function (req, res) {
   res.send(200, "Welcome to the API!");
 });
 
@@ -18,18 +18,20 @@ router.post("/post", function (req, res) {
 });
 
 /* POST quiz. Handler fn writes the post body into temporary database */
-router.post("/post/create_quiz", (req, res) => {
-   
-});
+router.post("/post/create_quiz", mwFunctions.addNewQuiz());
 
-/* PUT edit quiz. Handler takes a quiz id as last parameter and overwrites corresponding quiz in the database */
-router.put("/post/edit_quiz/:id")
+/* PUT edit quiz. Handler takes a quiz id as last parameter and overwrites corresponding quiz in the database.
+   If no ID is present in the url(since it might be unknown att the time of request) search the db and redirect
+   the request to*/
+router.put("/post/edit_quiz/:id?");
+/* Alternate rerouted path for requests with initial missing id fields */
+router.put("/post/edit_quiz/:id");
 
 /* GET request for quiz content */
 router.get("/quiz_questions", mwFunctions.getMockQuestions());
 
 /* GET request for any database folder and file */
-router.get("/:folder/:imageID", (req, res) => {
+router.get("/:folder/:item", (req, res) => {
   
 });
 // ----------------------------------------------------
