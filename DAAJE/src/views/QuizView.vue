@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute } from "vue-router";
-import { useResultStore } from "../stores/resultStore"
+import { useResultStore } from "../stores/ResultStore"
 import { ref, computed } from "vue";
 import TheQuestion from "../components/TheQuestion.vue";
 import TheResults from "../components/TheResults.vue";
