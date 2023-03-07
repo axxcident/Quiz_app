@@ -1,10 +1,12 @@
 //	Imports
-const fs = require ("fs");
+const fs 			  = require ("fs");
+const path            = require("path/posix");
 const { v4: uuidv4 }  = require("uuid");
 
 //	Declarations
 
-const mockQuestions = require("../public/data/quizQuestions.json");
+const mockQuestions = fs.readFileSync(path.normalize(`${__dirname}/../public/data/quizQuestions.json`));
+console.log(mockQuestions);
 
 const mwFunctions = {
 	headers(req, res, next) {
