@@ -2,7 +2,7 @@
 <template>
   <a
     class="none-underline"
-    :class="['app-button', color, size, padding]"
+    :class="['app-button', color, width, size, padding]"
     :style="{ width }"
   >
     <!-- slot as a placeholder that you pass in content from parent component. -->
@@ -19,7 +19,7 @@ export default {
     },
     size: {
       type: String,
-      default: "font-medium",
+      default: "medium",
     },
     padding: {
       type: String,
@@ -50,16 +50,31 @@ export default {
   background-image: linear-gradient(306deg, #c164ec 0%, #5f0a87 84%);
   color: white;
 }
-
-.font-medium {
-  font-size: 1rem;
+.light {
+  background-color: aliceblue;
+  color: #5f0a87;
 }
-
+.full-width {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+.small {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.medium {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.p-small {
+  padding: .5rem 1rem;
+}
 .p-medium {
-  padding: .60rem 2.7rem;
+  padding: 0.6rem 2.7rem;
 }
 .p-large {
-  padding: .60rem 5.7rem;
+  padding: 0.6rem 3.7rem;
 }
 
 .large {
