@@ -11,13 +11,7 @@
 
       <!-- <button @click="goToQuiz">Start Quiz!</button> -->
       <div class="mt-small">
-        <AppButton
-          @click="goToQuiz"
-          width=""
-          color="primary"
-          size="small"
-          padding="p-small"
-          >Start Quiz!
+        <AppButton @click="goToQuiz" width="" color="primary" size="small" padding="p-small">Start Quiz!
         </AppButton>
       </div>
     </div>
@@ -25,7 +19,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
 import { useRouter } from "vue-router";
 import AppButton from "../components/AppButton.vue";
 
@@ -41,6 +34,7 @@ const goToQuiz = () => {
 .mt-small {
   margin-top: 5px;
 }
+
 .quiz-container {
   display: flex;
   flex-direction: row;
@@ -48,19 +42,23 @@ const goToQuiz = () => {
   border-radius: 6px;
   padding: 12px;
 }
+
 .quiz-info {
   display: flex;
   align-items: center;
   flex-grow: 1;
 }
+
 img {
   width: 60px;
   height: auto;
 }
+
 .quiz-detail h3,
 p {
   margin: 0;
 }
+
 .quiz-detail h3 {
   font-size: 20px;
   padding-bottom: 6px;

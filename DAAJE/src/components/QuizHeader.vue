@@ -1,6 +1,4 @@
 <script setup>
-import { defineProps } from 'vue';
-
 const { quizStatus, completionPercentage } = defineProps(['quizStatus', 'completionPercentage'])
 </script>
 
