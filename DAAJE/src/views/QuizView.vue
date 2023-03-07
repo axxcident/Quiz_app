@@ -1,5 +1,6 @@
 <script setup>
 import { useRoute } from "vue-router";
+import { useResultStore } from "../stores/resultStore"
 import { ref, computed } from "vue";
 import TheQuestion from "../components/TheQuestion.vue";
 import TheResults from "../components/TheResults.vue";
@@ -15,6 +16,10 @@ const showResults = ref(false);
 
 const route = useRoute();
 const paramsId = parseInt(route.params.id);
+
+const resultStore = useResultStore();
+
+resultStore;
 
 const result = await axios.get("http://localhost:8080/quiz_questions");
 const quizes = ref(result.data);
@@ -50,23 +55,13 @@ const onChoiceSelected = (isCorrect) => {
       </div>
     </section>
     <main class="main-content">
-      <QuizHeader
-        :quizStatus="quizStatus"
-        :completionPercentage="completionPercentage"
-      />
+      <QuizHeader :quizStatus="quizStatus" :completionPercentage="completionPercentage" />
       <ProgressBar :currentQuestion="currentQuestionIndex + 1" />
       <div>
-        <TheQuestion
-          v-if="!showResults"
-          :question="quizToShow.questions[currentQuestionIndex]"
-          @selectChoice="onChoiceSelected"
-        />
+        <TheQuestion v-if="!showResults" :question="quizToShow.questions[currentQuestionIndex]"
+          @selectChoice="onChoiceSelected" />
 
-        <TheResults
-          v-else
-          :quizLength="quizToShow.questions.length"
-          :sumOfCorrectAnswers="sumOfCorrectAnswers"
-        />
+        <TheResults v-else :quizLength="quizToShow.questions.length" :sumOfCorrectAnswers="sumOfCorrectAnswers" />
       </div>
     </main>
   </div>
@@ -95,12 +90,13 @@ export default {
 }
 
 .hero-section {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 3rem 0.3rem;
   color: #d9d7d7;
 }
+
 .main-content {
   height: 100vh;
   margin: 0 -20px;
