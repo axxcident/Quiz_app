@@ -1,5 +1,5 @@
 <template>
-  <div class="avatar-wrapper">
+  <section class="avatar-wrapper">
     <div class="avatar-container">
       <img class="avatar-image" :src="avatarImg" />
     </div>
@@ -7,7 +7,7 @@
       <div class="user-info">Hello, Richard </div>
       <div class="user-info">JavaScript Educator</div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
