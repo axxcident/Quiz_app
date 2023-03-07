@@ -3,7 +3,7 @@ import AppButton from "../components/AppButton.vue";
 </script>
 
 <template>
-  <div class="card text-center">
+  <section class="card text-center">
     <div class="card-body">
       <!-- recive the props from HomePage -->
       <h5 class="card-title">{{ option.cardTitle }}</h5>
@@ -13,7 +13,7 @@ import AppButton from "../components/AppButton.vue";
         >{{ option.cardButton }}
       </AppButton>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

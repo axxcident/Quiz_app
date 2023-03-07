@@ -18,7 +18,7 @@ app.use(express.static('public/img'));
 
 //  Allow for CORS. Use cors() as middleware to allow for cors on single routes.
 const corsOptions = {
-    origin: 'http://127.0.0.1:5173',
+    origin: 'http://localhost:5173',
     optionsSuccessStatus: 200 
   }
 app.use(cors(corsOptions));
