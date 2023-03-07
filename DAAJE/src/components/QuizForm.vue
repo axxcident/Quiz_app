@@ -18,26 +18,26 @@
                     required
                 />
                 <div
-                    v-for="(answer, answerIndex) in question.answers"
-                    :key="answerIndex"
+                    v-for="(option, optionIndex) in question.options"
+                    :key="optionIndex"
                 >
-                    <label :for="'answer-' + index + '-' + answerIndex"
-                        >Answer {{ answerIndex + 1 }}</label
+                    <label :for="'option-' + index + '-' + optionIndex"
+                        >Option {{ optionIndex + 1 }}</label
                     >
                     <input
-                        :id="'answer-' + index + '-' + answerIndex"
+                        :id="'option-' + index + '-' + optionIndex"
                         type="text"
-                        v-model="answer.text"
+                        v-model="option.text"
                         required
-                    /><!---Använder enkel V-model och binder den till question arrayen, även en radiobutton som låter skaparen välja vilket av svaren som är rätt-->
+                    /><!---Använder enkel V-model och binder den till question arrayen-->
                     <input
-                        :id="'correct-answer-' + index"
                         type="radio"
-                        :value="answerIndex"
+                        :id="'correct-' + index + '-' + optionIndex"
+                        :name="'correct-' + index"
                         v-model="question.correctAnswer"
-                        required
+                        :value="option.id"
                     />
-                    <label :for="'correct-answer-' + index"
+                    <label :for="'correct-' + index + '-' + optionIndex"
                         >Correct answer</label
                     >
                 </div>
@@ -50,25 +50,26 @@
         </form>
     </div>
 </template>
-<!--Tanke om något error message ifall inte det går att skapa quizet, men behöver hjälp med backend konfig-->
+
 <script>
     export default {
         data() {
             return {
                 showForm: false, //False initialt, tills användarinteraktion och då dyker det upp
                 questions: [
+                    //Array där texten kommer från användaren, flerval
                     {
                         text: '',
-                        answers: [
-                            { text: '' },
-                            { text: '' },
-                            { text: '' },
-                            { text: '' }
+                        options: [
+                            { id: 1, text: '', isCorrect: false },
+                            { id: 2, text: '', isCorrect: false },
+                            { id: 3, text: '', isCorrect: false },
+                            { id: 4, text: '', isCorrect: false }
                         ],
-                        correctAnswer: 0 //Flera svarsalternativ och den som har correctanswer intryckt blir räknas
+                        correctAnswer: null
                     }
                 ],
-                createdQuiz: null,
+                createdQuiz: null, //Felmeddelande om inte quizet går att visas
                 errorMessage: ''
             }
         },
@@ -76,17 +77,16 @@
             addQuestion() {
                 this.questions.push({
                     text: '',
-                    answers: [
-                        { text: '' },
-                        { text: '' },
-                        { text: '' },
-                        { text: '' }
+                    options: [
+                        { id: 1, text: '', isCorrect: false },
+                        { id: 2, text: '', isCorrect: false },
+                        { id: 3, text: '', isCorrect: false },
+                        { id: 4, text: '', isCorrect: false }
                     ],
-                    correctAnswer: 0
+                    correctAnswer: null
                 })
             },
             async submitForm() {
-                //Async fetch till backenden, får gärna kika om de är till rätt host
                 try {
                     const response = await fetch(
                         'http://localhost:8080/createquiz',
@@ -104,17 +104,16 @@
                     this.questions = [
                         {
                             text: '',
-                            answers: [
-                                { text: '' },
-                                { text: '' },
-                                { text: '' },
-                                { text: '' }
+                            options: [
+                                { id: 1, text: '', isCorrect: false },
+                                { id: 2, text: '', isCorrect: false },
+                                { id: 3, text: '', isCorrect: false },
+                                { id: 4, text: '', isCorrect: false }
                             ],
-                            correctAnswer: 0
+                            correctAnswer: null
                         }
                     ]
                 } catch (error) {
-                    //Enkel catch
                     console.error(error)
                     this.errorMessage = 'Could not create quiz'
                 }
@@ -141,4 +140,3 @@
         margin-top: 10px;
     }
 </style>
-<!---Hmm nåt strul, igga denna kommentar endast för mig damir-->
