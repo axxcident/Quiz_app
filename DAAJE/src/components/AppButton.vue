@@ -40,6 +40,7 @@ export default {
   border: none;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  
 }
 .none-underline {
   text-decoration: none;
