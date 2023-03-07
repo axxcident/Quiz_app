@@ -7,6 +7,10 @@ export default defineConfig({
   server: {
     //add proxies to routes that must match same-origin policy
     proxy: {
+      '/quiz_questions': {
+        target: 'http://localhost:8080/quiz_questions',
+        changeOrigin: true,
+      },
       '/post': {
         target: 'http://localhost:8080/post',
         changeOrigin: true,

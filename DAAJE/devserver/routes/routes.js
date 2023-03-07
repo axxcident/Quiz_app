@@ -16,8 +16,10 @@ router.post("/post", function (req, res) {
   res.json({ status: "200 OK", content: req.body });
 });
 
-/* POST quiz. Handler fn writes the post body into temporary database */
-router.post("/post/create_quiz", mwFunction.assignQuizId);
+/* POST quiz. Handler fn assigns a uuid to the url and redirects below to continue the request */
+router.post("/post/create_quiz", mwFunction.assignQuizId, mwFunction.writeNewQuiz);
+/* Handle the redirected request with added uuid parameter. Currently unused, problems redirecting while keeping the original req body. */
+//router.post("/post/create_quiz/:uuid", mwFunction.writeNewQuiz);
 
 /* PUT edit quiz. Handler takes a quiz id as last parameter and overwrites corresponding quiz in the database.
    If no ID is present in the url(since it might be unknown att the time of request) search the db and redirect
@@ -31,7 +33,7 @@ router.get("/quiz_questions", mwFunction.getMockQuestions);
 
 /* GET request for any database folder and file */
 router.get("/:folder/:item", (req, res) => {
-  
+
 });
 // ----------------------------------------------------
 
