@@ -43,6 +43,9 @@ const onChoiceSelected = (isCorrect) => {
 
   currentQuestionIndex.value++;
 };
+const onResultSelected = (question, option) => {
+  console.log(question, option)
+}
 </script>
 
 <template>
@@ -59,7 +62,7 @@ const onChoiceSelected = (isCorrect) => {
       <ProgressBar :currentQuestion="currentQuestionIndex + 1" />
       <div>
         <TheQuestion v-if="!showResults" :question="quizToShow.questions[currentQuestionIndex]"
-          @selectChoice="onChoiceSelected" />
+          @selectChoice="onChoiceSelected" @addToResult="onResultSelected" />
 
         <TheResults v-else :quizLength="quizToShow.questions.length" :sumOfCorrectAnswers="sumOfCorrectAnswers" />
       </div>
