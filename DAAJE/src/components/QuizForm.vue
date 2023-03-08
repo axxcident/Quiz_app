@@ -100,8 +100,8 @@ import AppButton from "./AppButton.vue";
             },
             async submitForm() {
                 try {
-                    const response = await fetch(
-                        'http://localhost:8080/createquiz',
+                    const response = await fetch(//hotfixed request path 8/3 /E.N
+                        'http://localhost:8080/post/create_quiz',
                         {
                             method: 'POST',
                             headers: {

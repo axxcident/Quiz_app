@@ -2,6 +2,7 @@
 const fs 			  = require ("fs");
 const path            = require("path/posix");
 const { v4: uuidv4 }  = require("uuid");
+const util 			  = require ('util');
 
 //	Declarations
 const dataPath = path.normalize(`${__dirname}/../public/data/`);
@@ -35,7 +36,9 @@ const mwFunctions = {
 	writeNewQuiz(req, res) {
 			//write new quiz into db
 			console.log(req.body);
-			const data = JSON.stringify(req.body);
+			/* stringify() ignores the uuid based on insufficient parsing definition. Ergo the uuid lacks in the db file. */
+			const data = JSON.stringify(req.body, /* replacer */);
+			console.log(data);
 			fs.writeFile(path.join(dataPath, 'sessionUserQuiz.json'), data, isVerified)
 			res.status(200).send({ msg: "Posted new quiz!" });
 		}
