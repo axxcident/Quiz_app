@@ -19,8 +19,16 @@ export default {
 	data() {
 		return {
 			fetchedResultData: [],
+			// correctAnswers: [],
 		}
 	},
+	// computed: {
+	// 	correctAnswer() {
+	// 		return this.correctAnswers.push(this.results.forEach(elem => {
+	// 			elem.question.options.filter(correct => correct.isCorrect === true)
+	// 		}))
+	// 	}
+	// },
 	methods: {
 		fetchResults() {
 			fetch('https://avancera.app/cities/')
@@ -60,21 +68,27 @@ export default {
 			<div class="col-lg-8">
 				<h3>Resultat av ditt quiz!</h3>
 				<canvas id="myChart"></canvas>
-			</div>
-			<div class="col-lg-4">
-				<h3>
+				<h3 class="mb-3">
 					Enskilda resultat av frågor:
 				</h3>
-				<div v-for="(result) in results">
-					<h5>{{ result.question.text }}</h5>
-					<p>Rätt svar, {{ result.question.options.filter(correct => correct.isCorrect === true) }}</p>
-					<!-- skapa ett computed property på vilket svar som är rätt
-																													för att visa enskilt result.question === isCorrect -->
-					<p>Du valde: {{ result.option.label }}. {{ result.option.text }}</p>
-					<p></p>
+				<div v-for="(result, index) in results">
+					<h5>Fråga {{ index + 1 }}, {{ result.question.text }}</h5>
+					<p>Rätt svar: {{ result.question.options.filter(correct => correct.isCorrect === true)[0].label }}, {{
+						result.question.options.filter(correct => correct.isCorrect === true)[0].text }}</p>
+					<p class="student-answer pb-3" :class="{ 'text-danger': result.option.isCorrect === false }">
+						Du valde: {{ result.option.label }}. {{ result.option.text }}</p>
 				</div>
-				<!-- <p v-for="(data, index) in fetchedResultData" :key="data.id">{{ index + 1 }}, {{ data.name }}</p> -->
 			</div>
 		</div>
 	</div>
 </template>
+
+<style scoped>
+div {
+	color: white
+}
+
+.student-answer {
+	color: lightgreen;
+}
+</style>
