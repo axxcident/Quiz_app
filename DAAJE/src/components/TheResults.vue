@@ -10,7 +10,11 @@ export default {
 	},
 	setup() {
 		const resultStore = useResultStore();
-		return { resultStore }
+
+		const question = resultStore.results.question
+		const answers = resultStore.results.option
+		const results = resultStore.results
+		return { question, answers, results }
 	},
 	data() {
 		return {
@@ -61,7 +65,14 @@ export default {
 				<h3>
 					Enskilda resultat av frågor:
 				</h3>
-				<div v-for="(result, name) in resultStore">{{ result }}</div>
+				<div v-for="(result) in results">
+					<h5>{{ result.question.text }}</h5>
+					<p>Rätt svar, {{ result.question }}</p>
+					<!-- skapa ett computed property på vilket svar som är rätt
+								för att visa enskilt result.question === isCorrect -->
+					<p>Du valde, {{ result.option.text }}</p>
+					<p></p>
+				</div>
 				<!-- <p v-for="(data, index) in fetchedResultData" :key="data.id">{{ index + 1 }}, {{ data.name }}</p> -->
 			</div>
 		</div>
