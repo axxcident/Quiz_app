@@ -1,11 +1,16 @@
 <script>
 import Chart from 'chart.js/auto'
+import { useResultStore } from "../stores/resultStore"
 
 export default {
 	name: 'TheResults',
 	props: {
 		quizLength: Number,
 		sumOfCorrectAnswers: Number
+	},
+	setup() {
+		const resultStore = useResultStore();
+		return { resultStore }
 	},
 	data() {
 		return {
@@ -48,14 +53,15 @@ export default {
 <template>
 	<div class="container">
 		<div class="row">
-			<div class="col-8">
+			<div class="col-lg-8">
 				<h3>Resultat av ditt quiz!</h3>
 				<canvas id="myChart"></canvas>
 			</div>
-			<div class="col-4">
+			<div class="col-lg-4">
 				<h3>
 					Enskilda resultat av frågor:
 				</h3>
+				<div v-for="(result, name) in resultStore">{{ result }}</div>
 				<!-- <p v-for="(data, index) in fetchedResultData" :key="data.id">{{ index + 1 }}, {{ data.name }}</p> -->
 			</div>
 		</div>
