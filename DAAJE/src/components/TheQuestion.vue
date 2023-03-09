@@ -1,12 +1,11 @@
 <script setup>
-import { defineEmits } from "vue";
 const { question } = defineProps(["question"]);
 const emit = defineEmits(["selectChoice", 'addToResult']);
 const emitSelectedChoise = (isCorrect) => {
   emit("selectChoice", isCorrect);
 };
 const emitSelectedResult = (question, option) => {
-  emit('addToResult', question, option)
+  emit('addToResult', { question, option })
 }
 </script>
 

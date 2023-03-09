@@ -9,8 +9,8 @@ export const useResultStore = defineStore("ResultStore", {
     };
   },
   actions: {
-    addResult(result) {
-      this.results.push({ ...result });
+    addResult(question) {
+      this.results.push({ ...question });
     },
   },
   getters: {

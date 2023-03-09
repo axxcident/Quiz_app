@@ -19,8 +19,6 @@ const paramsId = parseInt(route.params.id);
 
 const resultStore = useResultStore();
 
-resultStore;
-
 const result = await axios.get("http://localhost:8080/quiz_questions");
 const quizes = ref(result.data);
 
@@ -43,9 +41,6 @@ const onChoiceSelected = (isCorrect) => {
 
   currentQuestionIndex.value++;
 };
-const onResultSelected = (question, option) => {
-  console.log(question, option)
-}
 </script>
 
 <template>
@@ -62,7 +57,7 @@ const onResultSelected = (question, option) => {
       <ProgressBar :currentQuestion="currentQuestionIndex + 1" />
       <div>
         <TheQuestion v-if="!showResults" :question="quizToShow.questions[currentQuestionIndex]"
-          @selectChoice="onChoiceSelected" @addToResult="onResultSelected" />
+          @selectChoice="onChoiceSelected" @addToResult="resultStore.addResult($event, { question, choice })" />
 
         <TheResults v-else :quizLength="quizToShow.questions.length" :sumOfCorrectAnswers="sumOfCorrectAnswers" />
       </div>
