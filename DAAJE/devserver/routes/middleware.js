@@ -8,11 +8,10 @@ const util 			  = require ('util');
 const dataPath = path.normalize(`${__dirname}/../public/data/`);
 						//sync fn used here for only for server setup(serving mock questions). Use async for further db handling.
 const mockQuestions = fs.readFileSync(path.join(dataPath, 'quizQuestions.json'));
-const isVerified = () => {/* verify caller fn and return bool */};
+const isVerified = (req) => {/* verify caller fn and return bool */};
 const createDynamicReplacer = (postObj) => {/* Use recursion to iterate the incoming [{}] and return a string[] of all properties
 											   and nested properties for the replacer*/
-
-	// return property list string[]
+	return Object.getOwnPropertyNames(postObj);
 };
 
 //  Main export body
@@ -31,21 +30,30 @@ const mwFunctions = {
 			res.status(200).send(JSON.parse(mockQuestions));
 	    },
 	assignQuizId(req, res, next) {
-			//add uuid property to request and redirect to add id to url param
+			//add uuid property to request and go to next middleware
+
+			//verify request
+			//if(!isVerified(req)) {return};
+			
 			console.log('Request from: ' + req.url);
 			let newId = uuidv4();
-			req.body.uuid = newId;
+
+			// add uid to index 0 and continue
+			req.body.unshift({ uuid: newId });
 			console.log(`Appended ID: ${newId}`);
 			next();
 	    },
 	writeNewQuiz(req, res) {//write new quiz into db
 			// create a frame array for stringify to know which properties to stringify
-			const replacerArray = createDynamicReplacer(req.body);
-			console.log(`Created replacer array: ${replacerArray}`);
+			console.log(`Handler recieved body: ${req.body} with id: ${req.body.uuid}`);
+
+			// create an object from recieved array
+			const dataObj = new Object(req.body);
+			console.log(`Data object: ${Object.entries(dataObj)}`);
 
 			// stringify quiz to write to db. *DONT FORGET TO UNCOMMENT REPLACER ARRAY WHEN READY!*
-			const data = JSON.stringify(req.body/* , replacerArray */);
-			console.log(`Handler recieved body: ${data}`);
+			const data = JSON.stringify(dataObj/* , createDynamicReplacer(req.body) */);
+			console.log(`Handler provided body: ${data}`);
 
 			//write to file and finish up
 			fs.writeFile(path.join(dataPath, 'sessionUserQuiz.json'), data, isVerified)
