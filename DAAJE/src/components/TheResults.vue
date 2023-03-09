@@ -67,9 +67,9 @@ export default {
 				</h3>
 				<div v-for="(result) in results">
 					<h5>{{ result.question.text }}</h5>
-					<p>Rätt svar, {{ result.question }}</p>
+					<p>Rätt svar, {{ result.question.options }}</p>
 					<!-- skapa ett computed property på vilket svar som är rätt
-								för att visa enskilt result.question === isCorrect -->
+															för att visa enskilt result.question === isCorrect -->
 					<p>Du valde, {{ result.option.text }}</p>
 					<p></p>
 				</div>
