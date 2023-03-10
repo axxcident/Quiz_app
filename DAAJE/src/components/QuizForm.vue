@@ -99,6 +99,15 @@ import AppButton from "./AppButton.vue";
                 })
             },
             async submitForm() {
+                // variabel som sammanställer frågorna som skapats i samma format som quizQuestions.json
+                const postBody = [
+                    {
+                        id: "",
+                        img: "",
+                        name: "",
+                        questions: this.questions
+                    }
+                ]
                 try {
                     const response = await fetch(//hotfixed request path 8/3 /E.N
                         'http://localhost:8080/post/create_quiz',
@@ -107,7 +116,7 @@ import AppButton from "./AppButton.vue";
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify(this.questions)
+                            body: JSON.stringify(postBody)
                         }
                     )
                     const data = await response.json()

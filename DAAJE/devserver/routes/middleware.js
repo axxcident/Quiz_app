@@ -39,7 +39,8 @@ const mwFunctions = {
 			let newId = uuidv4();
 
 			// add uid to index 0 and continue
-			req.body.unshift({ uuid: newId });
+			/* req.body.unshift({ uuid: newId }); */
+			req.body[0].id = newId;
 			console.log(`Appended ID: ${newId}`);
 			next();
 	    },

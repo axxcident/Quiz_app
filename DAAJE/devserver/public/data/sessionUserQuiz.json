@@ -1,57 +1,35 @@
 [
     {
-        "uuid": "d3eb3fbe-5457-48a2-b3c5-6efae34aef70"
-    },
-    {
-        "text": "adg",
-        "options": [
+        "id": "284edf1c-0525-4e05-a8cd-707e4cdb5903",
+        "img": "",
+        "name": "",
+        "questions": [
             {
-                "id": 1,
-                "text": "nä",
-                "isCorrect": false
-            },
-            {
-                "id": 2,
-                "text": "aa",
-                "isCorrect": false
-            },
-            {
-                "id": 3,
-                "text": "dagda",
-                "isCorrect": false
-            },
-            {
-                "id": 4,
-                "text": "hhhh",
-                "isCorrect": false
+                "text": "adgdag",
+                "options": [
+                    {
+                        "id": 1,
+                        "text": "adgadg",
+                        "isCorrect": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "adfa",
+                        "isCorrect": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "jg",
+                        "isCorrect": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "hej...",
+                        "isCorrect": false
+                    }
+                ],
+                "correctAnswer": 2
             }
-        ],
-        "correctAnswer": 1
-    },
-    {
-        "text": "sdhdsh",
-        "options": [
-            {
-                "id": 1,
-                "text": "asfa",
-                "isCorrect": false
-            },
-            {
-                "id": 2,
-                "text": "adgd",
-                "isCorrect": false
-            },
-            {
-                "id": 3,
-                "text": "dag",
-                "isCorrect": false
-            },
-            {
-                "id": 4,
-                "text": "asf",
-                "isCorrect": false
-            }
-        ],
-        "correctAnswer": 2
+        ]
     }
 ]
