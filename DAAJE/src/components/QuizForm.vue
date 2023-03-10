@@ -34,7 +34,7 @@
                 >
                     <label :for="'option-' + index + '-' + optionIndex"
                         >Option {{ optionIndex + 1 }}</label
-                    >
+                    ><!-- **lägg till input för att döpa den nya quizen!** -->
                     <input
                         :id="'option-' + index + '-' + optionIndex"
                         type="text"
