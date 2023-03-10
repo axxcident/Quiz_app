@@ -25,8 +25,8 @@ import QuizQuestions from "../components/QuizQuestions.vue";
   padding: 3rem 0.3rem;
   color: #d9d7d7;
 }
+
 .main-content {
-  height: 100vh;
   margin: 0 -20px;
   padding: 120px 20px 0 20px;
   border-top-left-radius: 40px;
