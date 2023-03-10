@@ -75,7 +75,7 @@ export default {
 					<h5>Fråga {{ index + 1 }}, {{ result.question.text }}</h5>
 					<p>Rätt svar: {{ result.question.options.filter(correct => correct.isCorrect === true)[0].label }}, {{
 						result.question.options.filter(correct => correct.isCorrect === true)[0].text }}</p>
-					<p class="student-answer pb-3" :class="{ 'text-danger': result.option.isCorrect === false }">
+					<p class="pb-3" :style="{ color: result.option.isCorrect ? '#dc3545' : '#198754' }">
 						Du valde: {{ result.option.label }}. {{ result.option.text }}</p>
 				</div>
 			</div>
@@ -86,9 +86,5 @@ export default {
 <style scoped>
 div {
 	color: white
-}
-
-.student-answer {
-	color: lightgreen;
 }
 </style>
