@@ -18,7 +18,7 @@
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ msg: "this is a post!"})
+          body: JSON.stringify([{ msg: "this is a post!"}])
         }).then((res) => {console.log(res.json());})
       }
       function tryGet() {

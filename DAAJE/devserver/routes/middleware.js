@@ -2,7 +2,7 @@
 const fs 			  = require ("fs");
 const path            = require("path/posix");
 const { v4: uuidv4 }  = require("uuid");
-const util 			  = require ('util');
+//const util 			  = require ('util');
 
 //	Declarations
 const dataPath = path.normalize(`${__dirname}/../public/data/`);
@@ -34,7 +34,7 @@ const mwFunctions = {
 
 			//verify request
 			//if(!isVerified(req)) {return};
-			
+
 			console.log('Request from: ' + req.url);
 			let newId = uuidv4();
 
@@ -51,7 +51,7 @@ const mwFunctions = {
 			const dataObj = new Object(req.body);
 			console.log(`Data object: ${Object.entries(dataObj)}`);
 
-			// stringify quiz to write to db. *DONT FORGET TO UNCOMMENT REPLACER ARRAY WHEN READY!*
+			// stringify quiz to write to db. *DONT FORGET TO UNCOMMENT REPLACER ARRAY WHEN READY!* now unused.
 			const data = JSON.stringify(dataObj/* , createDynamicReplacer(req.body) */);
 			console.log(`Handler provided body: ${data}`);
 
