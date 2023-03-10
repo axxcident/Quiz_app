@@ -55,6 +55,10 @@ const mwFunctions = {
 			/* req.body.unshift({ uuid: newId }); */
 			req.body[0].id = newId;
 			console.log(`Appended ID: ${newId}`);
+
+			//assign an img logo
+			req.body[0].img = "/img/placeholder_img.jpg";
+
 			next();
 	    },
 	writeNewQuiz(req, res) {//write new quiz into db
