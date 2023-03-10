@@ -58,7 +58,7 @@ const mwFunctions = {
 
 			//write to file and finish up
 			fs.writeFile(path.join(dataPath, 'sessionUserQuiz.json'), data, isVerified)
-			res.status(200).send({ msg: "Posted new quiz!" });
+			res.status(200).send({ msg: "Posted new quiz!", id: req.body[0].id });
 		},
 
 };
