@@ -8,6 +8,7 @@ const { v4: uuidv4 }  = require("uuid");
 const dataPath = path.normalize(`${__dirname}/../public/data/`);
 						//sync fn used here for only for server setup(serving mock questions). Use async for further db handling.
 const mockQuestions = fs.readFileSync(path.join(dataPath, 'quizQuestions.json'));
+const isVerified = (req) => {/* verify caller fn and return bool */};
 const createDynamicReplacer = (postObj) => {/* Use recursion to iterate the incoming [{}] and return a string[] of all properties
 											   and nested properties for the replacer*/
 	return Object.getOwnPropertyNames(postObj);
@@ -25,7 +26,6 @@ const mwFunctions = {
 			console.log('response headers set');
 			next();
 	    },
-	isVerified(req) {/* verify caller fn and return bool */},
 	getMockQuestions(req, res) {
 			//read buffer on request and parse to get js objects
 										/* **NOTICE: below is a sync function and wont scale with
@@ -70,7 +70,7 @@ const mwFunctions = {
 			console.log(`Handler provided body: ${data}`);
 
 			//write to file and finish up. Return assigned id in response body.
-			fs.writeFile(path.join(dataPath, 'sessionUserQuiz.json'), data, isVerified)
+			fs.writeFile(path.join(dataPath, 'sessionUserQuiz.json'), data, isVerified);
 			res.status(200).send({ msg: "Posted new quiz!", id: req.body[0].id });
 		},
 };

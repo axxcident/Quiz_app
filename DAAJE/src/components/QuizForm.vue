@@ -118,7 +118,7 @@ import AppButton from "./AppButton.vue";
                             },
                             body: JSON.stringify(postBody)
                         }
-                    )
+                    ).then(location.reload())//added reload page after posting new quiz
                     const data = await response.json()
                     console.log(data)
                     this.showForm = false
