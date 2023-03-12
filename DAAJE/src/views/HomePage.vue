@@ -4,16 +4,24 @@ import UserAvatar from "../components/UserAvatar.vue";
 </script>
 
 <template>
-  <div class="row">
+  <div class="row wrapper">
     <div class="col pt-medium">
-      <UserAvatar :img="imgPath" :userGreeting="userGreeting" :userDesc="userDesc" />
+      <UserAvatar
+        :img="imgPath"
+        :userGreeting="userGreeting"
+        :userDesc="userDesc"
+      />
       <div class="hero-text">
         <h1>Welcome to your favorite Quiz App</h1>
         <h4>Increase your students performance!</h4>
       </div>
       <main class="main-content">
         <div class="card-wrapper">
-          <HomeCard v-for="(option, index) in options" :key="index" :option="option" />
+          <HomeCard
+            v-for="(option, index) in options"
+            :key="index"
+            :option="option"
+          />
         </div>
       </main>
     </div>
@@ -29,19 +37,22 @@ export default {
     return {
       options: [
         {
-          cardTitle: "Create questionssss",
+          cardTitle: "Create questions",
           cardDescription: "Create tailored questions for a course",
           cardButton: "Action",
+          path: "/create-questions",
         },
         {
           cardTitle: "Previous Quiz",
           cardDescription: "Use a previous created Quiz",
           cardButton: "Action",
+          path: "/quiz",
         },
         {
           cardTitle: "Review prior results",
           cardDescription: "Review students previous results",
           cardButton: "Action",
+          path: "prior-results",
         },
       ],
       userInfo: {
@@ -55,6 +66,10 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+  height: 100%;
+}
+
 .pt-medium {
   padding-top: 20px;
 }
@@ -65,6 +80,7 @@ export default {
 }
 
 .main-content {
+  height: 100%;
   margin: 0 -20px;
   padding: 120px 20px 0 20px;
   border-top-left-radius: 40px;
