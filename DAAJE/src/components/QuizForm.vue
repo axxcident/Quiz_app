@@ -1,14 +1,14 @@
 <template>
     <div class="m-space">
-      <AppButton
-      @click="showForm = true"
-        color="light"
-        size="medium"
-        width="full-width"
-        fontWeight=""
-        padding="p-large"
-        >Create Quiz
-      </AppButton>
+        <AppButton
+            @click="showForm = true"
+            color="light"
+            size="medium"
+            width="full-width"
+            fontWeight=""
+            padding="p-large"
+            >Create Quiz
+        </AppButton>
     </div>
     <div>
         <button @click="showForm = true">Create Quiz</button>
@@ -59,11 +59,26 @@
             </div>
             <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
         </form>
+        <button @click="getQuiz">Get Quiz</button>
+        <ul v-if="quiz">
+            <li v-for="(question, index) in quiz.questions" :key="index">
+                <h3>{{ question.text }}</h3>
+                <ul>
+                    <li
+                        v-for="(option, optionIndex) in question.options"
+                        :key="optionIndex"
+                    >
+                        {{ option }}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
     </div>
 </template>
 
 <script>
-import AppButton from "./AppButton.vue";
+    import AppButton from './AppButton.vue'
     export default {
         data() {
             return {
@@ -81,8 +96,8 @@ import AppButton from "./AppButton.vue";
                         correctAnswer: null
                     }
                 ],
-                createdQuiz: null, //Felmeddelande om inte quizet går att visas
-                errorMessage: ''
+                quiz: null,
+                errorMessage: null //Felmeddelande om inte quizet går att visas
             }
         },
         methods: {
@@ -102,14 +117,15 @@ import AppButton from "./AppButton.vue";
                 // variabel som sammanställer frågorna som skapats i samma format som quizQuestions.json
                 const postBody = [
                     {
-                        id: "",
-                        img: "",
-                        name: "",
+                        id: '',
+                        img: '',
+                        name: '',
                         questions: this.questions
                     }
                 ]
                 try {
-                    const response = await fetch(//hotfixed request path 8/3 /E.N
+                    const response = await fetch(
+                        //hotfixed request path 8/3 /E.N
                         'http://localhost:8080/post/create_quiz',
                         {
                             method: 'POST',
@@ -118,7 +134,7 @@ import AppButton from "./AppButton.vue";
                             },
                             body: JSON.stringify(postBody)
                         }
-                    ).then(location.reload())//added reload page after posting new quiz
+                    ).then(location.reload()) //added reload page after posting new quiz
                     const data = await response.json()
                     console.log(data)
                     this.showForm = false
@@ -140,26 +156,43 @@ import AppButton from "./AppButton.vue";
                 }
             }
         },
-	components: { AppButton },
+        getQuiz() {
+            this.errorMessage = null //Klickfunktion för att kalla på rätt quiz
+            this.quiz = this.generateQuiz()
+        },
+        generateQuiz() {
+            //Skapar en quiz baserat på användarens inmatning
+            const quiz = {
+                questions: this.questions.map((question) => ({
+                    text: question.text,
+                    options: question.options.map((option) => option.text),
+                    correctAnswer: question.correctAnswer
+                }))
+            }
+            console.log(quiz) //Loggar den och sparar den i var quiz 
+            return quiz
+        },
+
+        components: { AppButton }
     }
 </script>
 
 <style>
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  max-width: 600px;
-}
-form input {
-  margin-bottom: 10px;
-}
-.m-space {
-    margin: 3rem 0;
-}
-.error {
-  color: red;
-  margin-top: 10px;
-}
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        max-width: 600px;
+    }
+    form input {
+        margin-bottom: 10px;
+    }
+    .m-space {
+        margin: 3rem 0;
+    }
+    .error {
+        color: red;
+        margin-top: 10px;
+    }
 </style>
