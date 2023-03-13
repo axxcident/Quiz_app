@@ -11,6 +11,7 @@ import TimerComponent from "../components/TimerComponent.vue";
 
 const currentQuestionIndex = ref(0);
 const sumOfCorrectAnswers = ref(0);
+const studentId = ref(0);
 const showResults = ref(false);
 
 const route = useRoute();
@@ -57,7 +58,8 @@ const onChoiceSelected = (isCorrect) => {
         <TheQuestion v-if="!showResults" :question="quizToShow.questions[currentQuestionIndex]"
           @selectChoice="onChoiceSelected" @addToResult="resultStore.addResult($event, { question, choice })" />
 
-        <TheResults v-else :quizLength="quizToShow.questions.length" :sumOfCorrectAnswers="sumOfCorrectAnswers" />
+        <TheResults v-else :studentId="studentId" :quizLength="quizToShow.questions.length"
+          :sumOfCorrectAnswers="sumOfCorrectAnswers" />
       </div>
     </main>
   </div>
