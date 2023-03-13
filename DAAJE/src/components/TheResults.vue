@@ -6,7 +6,8 @@ export default {
 	name: 'TheResults',
 	props: {
 		quizLength: Number,
-		sumOfCorrectAnswers: Number
+		sumOfCorrectAnswers: Number,
+		studentId: Number,
 	},
 	setup() {
 		const resultStore = useResultStore();
@@ -14,21 +15,19 @@ export default {
 		const question = resultStore.results.question
 		const answers = resultStore.results.option
 		const results = resultStore.results
+
+		// const { studentId } = defineProps(["studentId"]);
+		// this.resultStore.addResultSum(studentId, results)
+
+		resultStore.addResultSum(results)
+
 		return { question, answers, results }
 	},
 	data() {
 		return {
 			fetchedResultData: [],
-			// correctAnswers: [],
 		}
 	},
-	// computed: {
-	// 	correctAnswer() {
-	// 		return this.correctAnswers.push(this.results.forEach(elem => {
-	// 			elem.question.options.filter(correct => correct.isCorrect === true)
-	// 		}))
-	// 	}
-	// },
 	methods: {
 		fetchResults() {
 			fetch('https://avancera.app/cities/')
