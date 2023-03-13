@@ -1,8 +1,9 @@
 //	Imports
 const fs 			  = require ("fs");
+//const fsp			  = require ("fs").promises; //if using fs promises API
 const path            = require("path/posix");
 const { v4: uuidv4 }  = require("uuid");
-//const util 			  = require ('util');
+const querystring 	  = require('querystring');  //query parser only used in middleware functions
 
 //	Declarations
 const dataPath = path.normalize(`${__dirname}/../public/data/`);
@@ -77,6 +78,21 @@ const mwFunctions = {
 			fs.writeFile(path.join(dataPath, 'sessionUserQuiz.json'), data, isVerified);
 			res.status(200).send({ msg: "Posted new quiz!", id: req.body[0].id });
 		},
+	recieveResult(req, res, next) { //recieve a new student result post. Write into temp db
+		const newResult = req.body;
+		const newPath = path.join(dataPath, "sessionResults.json");
+		console.log(`Recieved student data: ${newResult}`);
+		fs.appendFile(newPath, newResult, (err) => {
+				if(err) {throw err};
+				res.locals.path = newPath;
+				next();
+			});
+	},
+	sendResults(req, res) { //return the updated concatinated student(s) result object
+		fs.readFile(req.locals.path, (err, data) => {
+			res.status(200).send(JSON.parse(data))
+		});
+	},
 };
 
 module.exports = mwFunctions;

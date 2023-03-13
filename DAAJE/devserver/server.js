@@ -8,7 +8,6 @@ const router     = require('./routes/routes');
 const cors       = require('cors');
 const proxy      = require('express-http-proxy');
 
-
 // all static served content declared here
 
 app.use(express.static('public'));
