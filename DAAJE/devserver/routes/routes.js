@@ -18,8 +18,8 @@ router.post("/post", function (req, res) {
 
 /* POST quiz. Handler fn assigns a uuid to the url and redirects below to continue the request */
 router.post("/post/create_quiz", mwFunction.assignQuizId, mwFunction.writeNewQuiz);
-/* Handle the redirected request with added uuid parameter. Currently unused, problems redirecting while keeping the original req body. */
-//router.post("/post/create_quiz/:uuid", mwFunction.writeNewQuiz);
+/* POST and send compiled result data */
+router.post("/post/result", mwFunction.recieveResult, mwFunction.sendResults); // **remember to listen for "id" query if needed**
 
 /* PUT edit quiz. Handler takes a quiz id as last parameter and overwrites corresponding quiz in the database.
    If no ID is present in the url(since it might be unknown att the time of request) search the db and redirect
