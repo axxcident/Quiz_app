@@ -99,12 +99,13 @@ import AppButton from "./AppButton.vue";
                 })
             },
             async submitForm() {
-                // variabel som sammanställer frågorna som skapats i samma format som quizQuestions.json
+                // variabel som sammanställer frågorna som skapats i samma format som quizQuestions.json.
+                // **Glöm inte att ändra propertyn "name" till en variabel för userns eget input **
                 const postBody = [
                     {
                         id: "",
                         img: "",
-                        name: "",
+                        name: "My Quiz",
                         questions: this.questions
                     }
                 ]
