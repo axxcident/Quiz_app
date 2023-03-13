@@ -1,6 +1,3 @@
-
-[{"id":"38ed7163-bf7a-4539-bd26-c952b63a8f34","img":"/img/placeholder_img.jpg","name":"My Quiz","questions":[{"text":"adg","options":[{"id":1,"text":"gggg","isCorrect":false},{"id":2,"text":"adfa","isCorrect":false},{"id":3,"text":"jg","isCorrect":false},{"id":4,"text":"hej...","isCorrect":false}],"correctAnswer":1},{"text":"sdhdsh","options":[{"id":1,"text":"asfa","isCorrect":false},{"id":2,"text":"adgd","isCorrect":false},{"id":3,"text":"aha","isCorrect":false},{"id":4,"text":"asf","isCorrect":false}],"correctAnswer":3}]}]
-=======
 [
   {
     "id": "0a83f170-9498-4df2-b755-487fe6f4f81b",
