@@ -44,7 +44,7 @@ export default {
 			if (teacher) {
 				this.welcomeMessage = 'Welcome Richard'
 			} else {
-				this.welcomeMessage = 'Welcome student'
+				this.welcomeMessage = 'Welcome Student'
 			}
 		}
 	},
