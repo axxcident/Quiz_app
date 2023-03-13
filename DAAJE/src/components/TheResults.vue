@@ -8,6 +8,7 @@ export default {
 		quizLength: Number,
 		sumOfCorrectAnswers: Number,
 		studentId: Number,
+		teacher: Boolean
 	},
 	setup() {
 		const resultStore = useResultStore();
@@ -25,6 +26,7 @@ export default {
 	},
 	data() {
 		return {
+			welcomeMessage: '',
 			fetchedResultData: [],
 		}
 	},
@@ -35,6 +37,15 @@ export default {
 				.then((result) => {
 					this.fetchedResultData = result
 				})
+		}
+	},
+	computed: {
+		isTeacher(teacher) {
+			if (teacher) {
+				this.welcomeMessage = 'Welcome Richard'
+			} else {
+				this.welcomeMessage = 'Welcome student'
+			}
 		}
 	},
 	mounted() {
@@ -65,6 +76,7 @@ export default {
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8">
+				<p>{{ welcomeMessage }}</p>
 				<h3>Resultat av ditt quiz!</h3>
 				<canvas id="myChart"></canvas>
 				<h3 class="mb-3">
