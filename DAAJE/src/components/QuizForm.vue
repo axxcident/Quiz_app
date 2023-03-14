@@ -17,6 +17,20 @@
             <!---Submitprevent så den kan routas till egen backend-->
             <!---Gör en V-if som initialt gömmer formen som sen blir triggad av knappklicket-->
             <h2>Create Quiz</h2>
+            <!---Quizname label, låter användaren namnge quiz-->
+            <div>
+                <label for="quiz-name">Quiz Name:</label>
+                <input id="quiz-name" type="text" v-model="quizName" required />
+            </div>
+            <!---Quizcategory label, låter användaren kategorisera-->
+            <div>
+                <label for="quiz-category">Quiz Category:</label>
+                <select id="quiz-category" v-model="quizCategory">
+                    <option v-for="category in categories" :value="category">
+                        {{ category }}
+                    </option>
+                </select>
+            </div>
             <div v-for="(question, index) in questions" :key="index">
                 <!---Loopar igenom varje question och använder index för att identifiera positionen i varje element-->
                 <label :for="'question-' + index"
@@ -28,13 +42,14 @@
                     v-model="question.text"
                     required
                 />
+
                 <div
                     v-for="(option, optionIndex) in question.options"
                     :key="optionIndex"
                 >
                     <label :for="'option-' + index + '-' + optionIndex"
                         >Option {{ optionIndex + 1 }}</label
-                    ><!-- **lägg till input för att döpa den nya quizen!** -->
+                    >
                     <input
                         :id="'option-' + index + '-' + optionIndex"
                         type="text"
@@ -52,6 +67,19 @@
                         >Correct answer</label
                     >
                 </div>
+            </div>
+            <!---Quizspråk, låter användaren välja språk -->
+            <div>
+                <label for="language-select">Language:</label>
+                <select id="language-select" v-model="selectedLanguage">
+                    <option
+                        v-for="language in languages"
+                        :value="language"
+                        :key="language"
+                    >
+                        {{ language }}
+                    </option>
+                </select>
             </div>
             <div>
                 <button type="button" @click="addQuestion">Add Question</button>
@@ -97,7 +125,17 @@
                     }
                 ],
                 quiz: null,
-                errorMessage: null //Felmeddelande om inte quizet går att visas
+                errorMessage: null, //Felmeddelande om inte quizet går att visas
+                quizName: '',
+                languages: [
+                    'Svenska',
+                    'English',
+                    'Deutsch',
+                    'Español',
+                    'Français'
+                ],
+                selectedLanguage: '',
+                categories: ['Vue', 'React', 'JavaScript', 'Node', 'Other']
             }
         },
         methods: {
@@ -119,10 +157,14 @@
                     {
                         id: '',
                         img: '',
-                        name: '',
-                        questions: this.questions
+                        name: this.quizName,
+                        questions: this.questions,
+                        category: this.quizCategory
                     }
                 ]
+                if (this.selectedLanguage) {
+                    postBody[0].language = this.selectedLanguage
+                } /*Om det finns ett valt språk, så lägger denna till det som det första elementet i postBody arrayen. */
                 try {
                     const response = await fetch(
                         //hotfixed request path 8/3 /E.N
@@ -169,7 +211,7 @@
                     correctAnswer: question.correctAnswer
                 }))
             }
-            console.log(quiz) //Loggar den och sparar den i var quiz 
+            console.log(quiz) //Loggar den och sparar den i var quiz
             return quiz
         },
 
