@@ -1,15 +1,3 @@
-<template>
-	<div class="row">
-		<div class="col">
-			<h1>Results page For Teacher</h1>
-			<p v-for="result of sumOfResults">{{ result[19] }}</p>
-
-			<!-- går det att återanvända den här komponnent? -->
-			<TheResults :teacher="teacher" />
-		</div>
-	</div>
-</template>
-
 <script>
 import TheResults from '../components/TheResults.vue';
 import { useResultStore } from "../stores/resultStore"
@@ -37,6 +25,18 @@ export default {
 	}
 }
 </script>
+
+<template>
+	<div class="row">
+		<div class="col">
+			<h1>Results page For Teacher</h1>
+			<p v-for="result of sumOfResults">{{ result[19] }}</p>
+
+			<!-- går det att återanvända den här komponnent? -->
+			<TheResults :teacher="teacher" />
+		</div>
+	</div>
+</template>
 
 <style scoped>
 h1,
