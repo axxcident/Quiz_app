@@ -38,8 +38,6 @@ const onChoiceSelected = (isCorrect) => {
   if (quizToShow.questions.length - 1 === currentQuestionIndex.value) {
     showResults.value = true;
 
-
-
     // POST results to backend
     // när showResults.value = true, är quizzet klart och skicka in
     // värdet att skicka, resultStore.results
