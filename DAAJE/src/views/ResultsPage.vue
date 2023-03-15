@@ -11,10 +11,10 @@ export default {
 	},
 	setup() {
 		const resultStore = useResultStore();
-		const sumOfResults = resultStore.fetchedResults;
-		// console.log(sumOfResults)
+		const fetchedResults = resultStore.fetchedResults;
+		// console.log(fetchedResults)
 
-		// const sumOfResultsQuestionsArr = sumOfResults.forEach(elem => elem.question.options.filter(option => option.isCorrect === true)[0].text)
+		// const fetchedResultsQuestionsArr = fetchedResults.forEach(elem => elem.question.options.filter(option => option.isCorrect === true)[0].text)
 
 		// result.question.options.filter(option => option.isCorrect === true)[0].text
 
@@ -35,41 +35,52 @@ export default {
 		// Det jag vill gör nu är att sammla svars längd (mängd frågor), och antal rätt, 
 		// för att kunna räkna ut ett medeltal. 
 
-		const sumOfResultsQuestionsRESULTS = [];
+		const fetchedResultsQuestionsRESULTS = [];
 		// får ut datan med rätt svars alternativ på frågan i console.log
 
-		// console.log(sumOfResults[])
-		// console.log(sumOfResults[1][0]['option']['isCorrect'])
-		// console.log(sumOfResults[0][0]['option']['isCorrect'])
+		console.log(fetchedResults)
+		// fetchedResults.forEach(elem => {
+		// 	console.log(elem)
+		// })
 
-		for (let i = 0; i < sumOfResults.length; i++) {
-			console.log(sumOfResults[i])
-			console.log(sumOfResults[i][0]['option']['isCorrect'])
-			for (let j = 0; j < sumOfResults[i].length; j++) {
-				console.log(sumOfResults[i][j])
+		for (let i = 0; i < fetchedResults.length; i++) {
+			console.log(fetchedResults[i][j]['option']['isCorrect'])
+			for (let j = 0; j < fetchedResults[0][0]['option']['isCorrect'].length; j++) {
+
 			}
 		}
 
+		// console.log(fetchedResults[1][0]['option']['isCorrect'])
+		// console.log(fetchedResults[0][0]['option']['isCorrect'])
 
-		// const sumOfResultsQuestionsArr = sumOfResults.forEach(elem => {
+		// for (let i = 0; i < fetchedResults.length; i++) {
+		// 	console.log(fetchedResults[i][1])
+		// 	console.log(fetchedResults[i][0]['option']['isCorrect'])
+		// 	for (let j = 0; j < fetchedResults[i].length; j++) {
+		// 		console.log(fetchedResults[i][j])
+		// 	}
+		// }
+
+
+		// const fetchedResultsQuestionsArr = fetchedResults.forEach(elem => {
 
 		// 	elem.forEach(subElem => {
 
 		// 		if (elem[0]['option']['isCorrect'] === true) {
-		// 			sumOfResultsQuestionsRESULTS.push(true)
+		// 			fetchedResultsQuestionsRESULTS.push(true)
 		// 		} else {
-		// 			sumOfResultsQuestionsRESULTS.push(false)
+		// 			fetchedResultsQuestionsRESULTS.push(false)
 		// 		}
 		// 		console.log(elem[0]['question']['options'].filter(option => option.isCorrect === true)[0].text)
 		// 		console.log(elem[0]['option']['isCorrect'])
-		// 		console.log(sumOfResults.length)
-		// 		console.log(sumOfResultsQuestionsRESULTS)
+		// 		console.log(fetchedResults.length)
+		// 		console.log(fetchedResultsQuestionsRESULTS)
 		// 	})
 		// });
 
 
 
-		return { sumOfResults }
+		return { fetchedResults }
 	}
 }
 </script>
@@ -78,8 +89,8 @@ export default {
 	<div class="row">
 		<div class="col">
 			<h1>Results page For Teacher</h1>
-			<p>{{ sumOfResultsQuestionsArr }}</p>
-			<div v-for="(result, index) of sumOfResults">
+			<p>{{ fetchedResultsQuestionsArr }}</p>
+			<div v-for="(result, index) of fetchedResults">
 				<h5>Fråga {{ index + 1 }}, {{ result[index].question.text }}</h5>
 				<p>{{ result[index].question.text }}</p>
 				<p>{{ result[index].question.text }}</p>
