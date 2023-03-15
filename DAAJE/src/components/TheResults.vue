@@ -20,7 +20,8 @@ export default {
 		// const { studentId } = defineProps(["studentId"]);
 		// this.resultStore.addResultSum(studentId, results)
 
-		resultStore.addResultSum(results)
+		// add result to pinia (hot fix)
+		// resultStore.addResultSum(results)
 
 		return { question, answers, results }
 	},
@@ -84,8 +85,8 @@ export default {
 				</h3>
 				<div v-for="(result, index) in results">
 					<h5>Fråga {{ index + 1 }}, {{ result.question.text }}</h5>
-					<p>Rätt svar: {{ result.question.options.filter(correct => correct.isCorrect === true)[0].label }}, {{
-						result.question.options.filter(correct => correct.isCorrect === true)[0].text }}</p>
+					<p>Rätt svar: {{ result.question.options.filter(option => option.isCorrect === true)[0].label }}, {{
+						result.question.options.filter(option => option.isCorrect === true)[0].text }}</p>
 					<p class="pb-3" :style="{ color: result.option.isCorrect ? '#dc3545' : '#198754' }">
 						Du valde: {{ result.option.label }}. {{ result.option.text }}</p>
 				</div>
