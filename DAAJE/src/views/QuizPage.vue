@@ -1,15 +1,19 @@
 <script setup>
 import QuizForm from "../components/QuizForm.vue";
+import UserAvatar from "../components/UserAvatar.vue";
 import QuizQuestions from "../components/QuizQuestions.vue";
 </script>
 
 <template>
   <Suspense>
     <div class="wrapper">
-      <div class="hero-text">
-        <h1>Welcome to your favorite Quiz App</h1>
-        <h4>Select a category to start the quiz!</h4>
-      </div>
+      <section class="pt-medium">
+        <UserAvatar :userName="userName" :userRole="userRole" />
+        <div class="hero-text">
+          <h1>Welcome to your favorite Quiz App</h1>
+          <h4>Select a category to start the quiz!</h4>
+        </div>
+      </section>
       <main class="main-content">
         <div class="quiz-container">
           <QuizQuestions />
@@ -21,8 +25,8 @@ import QuizQuestions from "../components/QuizQuestions.vue";
 </template>
 
 <style scoped>
-.wrapper {
-  height: 100%;
+.pt-medium {
+  padding-top: 20px;
 }
 .hero-text {
   padding: 3rem 0.3rem;
@@ -30,7 +34,7 @@ import QuizQuestions from "../components/QuizQuestions.vue";
 }
 
 .main-content {
-  height: inherit;
+  height: 100vh;
   margin: 0 -20px;
   padding: 120px 20px 0 20px;
   border-top-left-radius: 40px;

@@ -66,9 +66,9 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
-  height: 100%;
-}
+/* .wrapper {
+ height: 100vh;
+} */
 
 .pt-medium {
   padding-top: 20px;
@@ -80,7 +80,7 @@ export default {
 }
 
 .main-content {
-  height: 100%;
+  min-height: 100vh;
   margin: 0 -20px;
   padding: 120px 20px 0 20px;
   border-top-left-radius: 40px;
