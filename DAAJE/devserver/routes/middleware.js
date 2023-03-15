@@ -17,7 +17,7 @@ const createDynamicReplacer = (postObj) => {/* Use recursion to iterate the inco
 //TODO
 const findDatabaseObject = (fileName) => { //search the db folders and return the path to the dir which contains the file
 	if(typeof fileName != "string") { return console.log("Type error. The value passed was not of type: string");}
-	return path.normalize(`${__dirname}/../public/data/${fileName}`);
+	return path.join(dataPath, fileName);
 };
 
 //  Main export body
@@ -86,15 +86,36 @@ const mwFunctions = {
 		},
 	recieveResult(req, res, next) { //recieve a new student result post. Write into temp db
 		console.log(`Recieved student result data: ${req.body.resultData}`);
+
 		
-		const newResult = JSON.stringify([req.body]);
 		const newPath = path.join(dataPath, "sessionResults.json");
-		
-		fs.appendFile(newPath, newResult, (err) => {
-				if(err) { throw err };
-				console.log(`Student result data write success`);
-				next();
-			});
+		if (!fs.existsSync(newPath)) {
+
+				const newResult = [req.body];
+
+				// give the session an id to separate sessions
+				newResult.unshift({ sessionId: uuidv4() });
+
+				// create a new file
+				fs.appendFile(newPath, JSON.stringify(newResult), (err) => {
+						if(err) { throw err };
+						console.log(`Student result data creation success`);
+						next();
+					});
+				}
+		else {
+			fs.readFile(newPath, (err, data) => {
+					if (err) { throw err; }
+					const currentData = JSON.parse(data);
+					console.log(`Extant data in file: ${currentData[0]}`);
+					currentData.push(req.body);
+					fs.writeFile(newPath, JSON.stringify(currentData), () => {
+						if(err) { throw err };
+						console.log(`Student result data write success`);
+						next();
+					});
+				});
+		}
 	},
 	sendResults(req, res) { //return the updated concatinated student(s) result object
 		fs.readFile(findDatabaseObject("sessionResults.json"), (err, data) => {
