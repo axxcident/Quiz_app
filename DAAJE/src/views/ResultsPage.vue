@@ -14,6 +14,15 @@ export default {
 		const sumOfResults = resultStore.fetchedResults;
 		// console.log(sumOfResults)
 
+		const sumOfResultsQuestionsArr = sumOfResults.forEach(elem => {
+			console.log(elem[0])
+		});
+
+		// const sumOfResultsQuestionsArr = sumOfResults.forEach(elem => elem.question.options.filter(option => option.isCorrect === true)[0].text)
+
+		// result.question.options.filter(option => option.isCorrect === true)[0].text
+
+
 		// sum of results
 		// 1) get total results data as object, DONE (line 26)
 		// 2) look through each result object and find right/wrong for each question
@@ -21,7 +30,7 @@ export default {
 		// 4) show the average of total results for right/wrong
 		// 5)
 
-		return { sumOfResults }
+		return { sumOfResults, sumOfResultsQuestionsArr }
 	}
 }
 </script>
@@ -30,6 +39,7 @@ export default {
 	<div class="row">
 		<div class="col">
 			<h1>Results page For Teacher</h1>
+			<p>{{ sumOfResultsQuestionsArr }}</p>
 			<p v-for="result of sumOfResults">{{ result[19] }}</p>
 
 			<!-- går det att återanvända den här komponnent? -->
