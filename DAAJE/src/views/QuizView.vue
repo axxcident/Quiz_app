@@ -37,6 +37,28 @@ const onChoiceSelected = (isCorrect) => {
 
   if (quizToShow.questions.length - 1 === currentQuestionIndex.value) {
     showResults.value = true;
+
+
+
+    // POST results to backend
+    // när showResults.value = true, är quizzet klart och skicka in
+    // värdet att skicka, resultStore.results
+    const resultData = resultStore.results
+    console.log(resultData)
+
+    // send resultData to pinia just to keep working
+    resultStore.addResultSum(resultData)
+
+    axios.post('/post/result?id=01', {
+      resultData
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
   }
 
   currentQuestionIndex.value++;
