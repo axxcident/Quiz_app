@@ -59,7 +59,7 @@ const onChoiceSelected = (isCorrect) => {
         console.log(error);
       });
 
-    // resultStore.results = [];
+    resultStore.results = [];
 
   }
 
