@@ -86,19 +86,35 @@ const mwFunctions = {
 		},
 	recieveResult(req, res, next) { //recieve a new student result post. Write into temp db
 		console.log(`Recieved student result data: ${req.body.resultData}`);
+
 		
-		req.body.sessionId = uuidv4();
-		const newResult = JSON.stringify([req.body]);
 		const newPath = path.join(dataPath, "sessionResults.json");
 		if (!fs.existsSync(newPath)) {
-				fs.appendFile(newPath, newResult, (err) => {
+
+				const newResult = [req.body];
+
+				// give the session an id to separate sessions
+				newResult.unshift({ sessionId: uuidv4() });
+
+				// create a new file
+				fs.appendFile(newPath, JSON.stringify(newResult), (err) => {
 						if(err) { throw err };
-						console.log(`Student result data write success`);
+						console.log(`Student result data creation success`);
 						next();
 					});
 				}
 		else {
-			return; //TODO
+			fs.readFile(newPath, (err, data) => {
+					if (err) { throw err; }
+					const currentData = JSON.parse(data);
+					console.log(`Extant data in file: ${currentData[0]}`);
+					currentData.push(req.body);
+					fs.writeFile(newPath, JSON.stringify(currentData), () => {
+						if(err) { throw err };
+						console.log(`Student result data write success`);
+						next();
+					});
+				});
 		}
 	},
 	sendResults(req, res) { //return the updated concatinated student(s) result object
