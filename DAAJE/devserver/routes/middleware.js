@@ -14,6 +14,11 @@ const createDynamicReplacer = (postObj) => {/* Use recursion to iterate the inco
 											   and nested properties for the replacer*/
 	return Object.getOwnPropertyNames(postObj);
 };
+//TODO
+const findDatabaseObject = (fileName) => { //search the db folders and return the path to the dir which contains the file
+	if(typeof fileName != "string") { return console.log("Type error. The value passed was not of type: string");}
+	return path.normalize(`${__dirname}/../public/data/${fileName}`);
+};
 
 //  Main export body
 const mwFunctions = {
@@ -80,18 +85,21 @@ const mwFunctions = {
 			res.status(200).send({ msg: "Posted new quiz!", id: req.body[0].id });
 		},
 	recieveResult(req, res, next) { //recieve a new student result post. Write into temp db
-		const newResult = req.body;
+		console.log(`Recieved student result data: ${req.body.resultData}`);
+		
+		const newResult = JSON.stringify(req.body);
 		const newPath = path.join(dataPath, "sessionResults.json");
-		console.log(`Recieved student data: ${newResult}`);
+		
 		fs.appendFile(newPath, newResult, (err) => {
-				if(err) {throw err};
-				res.locals.path = newPath;
+				if(err) { throw err };
+				console.log(`Student result data write success`);
 				next();
 			});
 	},
 	sendResults(req, res) { //return the updated concatinated student(s) result object
-		fs.readFile(req.locals.path, (err, data) => {
-			res.status(200).send(JSON.parse(data))
+		fs.readFile(findDatabaseObject("sessionResults.json"), (err, data) => {
+			if(err) { return console.log(`Error: ${err}`) }
+			res.status(200).send(JSON.parse([data]));
 		});
 	},
 };

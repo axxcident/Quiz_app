@@ -46,8 +46,10 @@ const onChoiceSelected = (isCorrect) => {
 
     // send resultData to pinia just to keep working
     resultStore.addResultSum(resultData)
-
-    axios.post('/post/result?id=01', {
+              // **relative pathing will result in the request being made to 127.0.0.1**
+              //   The request needs to go to "http://localhost:8080". Proxying only changes
+              //   the origin header, not the request path. **
+    axios.post('http://localhost:8080/post/result?id=01', {
       resultData
     })
       .then(response => {

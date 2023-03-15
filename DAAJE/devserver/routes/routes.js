@@ -18,7 +18,7 @@ router.post("/post", function (req, res) {
 
 /* POST quiz. Handler fn assigns a uuid to the url and redirects below to continue the request */
 router.post("/post/create_quiz", mwFunction.assignQuizId, mwFunction.writeNewQuiz);
-/* POST and send compiled result data */
+/* POST and send compiled stundent result data */
 router.post("/post/result", mwFunction.recieveResult, mwFunction.sendResults); // **remember to listen for "id" query if needed**
 
 /* PUT edit quiz. Handler takes a quiz id as last parameter and overwrites corresponding quiz in the database.
