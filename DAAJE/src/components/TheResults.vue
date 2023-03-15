@@ -20,7 +20,8 @@ export default {
 		// const { studentId } = defineProps(["studentId"]);
 		// this.resultStore.addResultSum(studentId, results)
 
-		resultStore.addResultSum(results)
+		// add result to pinia (hot fix)
+		// resultStore.addResultSum(results)
 
 		return { question, answers, results }
 	},
