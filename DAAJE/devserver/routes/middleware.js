@@ -87,7 +87,7 @@ const mwFunctions = {
 	recieveResult(req, res, next) { //recieve a new student result post. Write into temp db
 		console.log(`Recieved student result data: ${req.body.resultData}`);
 		
-		const newResult = JSON.stringify(req.body);
+		const newResult = JSON.stringify([req.body]);
 		const newPath = path.join(dataPath, "sessionResults.json");
 		
 		fs.appendFile(newPath, newResult, (err) => {
