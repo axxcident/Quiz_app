@@ -57,14 +57,15 @@ const mwFunctions = {
 			req.body[0].id = newId;
 			console.log(`Appended ID: ${newId}`);
 
-			//assign an img logo
-			req.body[0].img = "/img/placeholder_img.jpg";
+			//assign an img logo	
+			//						*dynamically read the directory files and find the img we want*			
+			req.body[0].img = `/img/${fs.readdirSync(path.normalize(__dirname + `/../public/img`))[Array.indexOf("placeholder_img.jpg")]}`;
 
 			next();
 	    },
 	writeNewQuiz(req, res) {//write new quiz into db
 			// create a frame array for stringify to know which properties to stringify
-			console.log(`Handler recieved body: ${req.body} with id: ${req.body.uuid}`);
+			console.log(`Handler recieved body: ${req.body} with id: ${req.body.id}`);
 
 			// create an object from recieved array
 			const dataObj = new Object(req.body);
