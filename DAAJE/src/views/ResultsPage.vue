@@ -35,15 +35,41 @@ export default {
 		// Det jag vill gör nu är att sammla svars längd (mängd frågor), och antal rätt, 
 		// för att kunna räkna ut ett medeltal. 
 
-
+		const sumOfResultsQuestionsRESULTS = [];
 		// får ut datan med rätt svars alternativ på frågan i console.log
-		const sumOfResultsQuestionsArr = sumOfResults.forEach(elem => {
-			console.log(elem[0]['question']['options'].filter(option => option.isCorrect === true)[0].text)
-		});
+
+		// console.log(sumOfResults[])
+		// console.log(sumOfResults[1][0]['option']['isCorrect'])
+		// console.log(sumOfResults[0][0]['option']['isCorrect'])
+
+		for (let i = 0; i < sumOfResults.length; i++) {
+			console.log(sumOfResults[i])
+			console.log(sumOfResults[i][0]['option']['isCorrect'])
+			for (let j = 0; j < sumOfResults[i].length; j++) {
+				console.log(sumOfResults[i][j])
+			}
+		}
+
+
+		// const sumOfResultsQuestionsArr = sumOfResults.forEach(elem => {
+
+		// 	elem.forEach(subElem => {
+
+		// 		if (elem[0]['option']['isCorrect'] === true) {
+		// 			sumOfResultsQuestionsRESULTS.push(true)
+		// 		} else {
+		// 			sumOfResultsQuestionsRESULTS.push(false)
+		// 		}
+		// 		console.log(elem[0]['question']['options'].filter(option => option.isCorrect === true)[0].text)
+		// 		console.log(elem[0]['option']['isCorrect'])
+		// 		console.log(sumOfResults.length)
+		// 		console.log(sumOfResultsQuestionsRESULTS)
+		// 	})
+		// });
 
 
 
-		return { sumOfResults, sumOfResultsQuestionsArr }
+		return { sumOfResults }
 	}
 }
 </script>
