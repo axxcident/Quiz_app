@@ -87,7 +87,7 @@ const mwFunctions = {
 				res.locals.path = newPath;
 				next();
 			});
-	},
+		},
 	sendResults(req, res) { //return the updated concatinated student(s) result object
 		fs.readFile(req.locals.path, (err, data) => {
 			res.status(200).send(JSON.parse(data))
