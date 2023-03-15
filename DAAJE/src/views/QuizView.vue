@@ -52,10 +52,10 @@ const onChoiceSelected = (isCorrect) => {
     axios.post('/post/result?id=01', {
       resultData
     })
-      .then(function (response) {
+      .then(response => {
         console.log(response);
       })
-      .catch(function (error) {
+      .catch(error => {
         console.log(error);
       });
 
