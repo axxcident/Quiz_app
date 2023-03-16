@@ -1,10 +1,10 @@
 <script>
-import TheResults from '../components/TheResults.vue';
+// import TheResults from '../components/TheResults.vue';
 import { useResultStore } from "../stores/resultStore"
 // import Chart from 'chart.js/auto'
 
 export default {
-	components: { TheResults },
+	// components: { TheResults },
 	data() {
 		return {
 			teacher: true
@@ -40,6 +40,8 @@ export default {
 		for (let i = 0; i < fetchedResultsShortened.length; i++) {
 			for (let j = 0; j < fetchedResultsShortened[i].resultData.length; j++) {
 				const studentAnswer = fetchedResultsShortened[i].resultData[j].option.isCorrect;
+
+				// adding total count of questions from all quizzes and questions within.
 				totalAmountQuestions++;
 
 				if (studentAnswer) {
@@ -78,9 +80,8 @@ export default {
 		<div class="col">
 			<h1 class="mb-2 mt-2">Results page For Teacher</h1>
 			<h3 class="mb-3">Total results for this quiz</h3>
-			<h4 class="mb-4"> >> {{ totalCorrectAnswers }} / {{ totalAmountQuestions }} -- ({{ fetchedResultsShortened.length
-			}}
-				inlämande quiz.)</h4>
+			<h4 class="mb-4"> Totalt {{ totalCorrectAnswers }} rätt, från {{ totalAmountQuestions }} frågor med,
+				{{ fetchedResultsShortened.length }} inlämande quizzes</h4>
 
 			<!-- <canvas id="myChart"></canvas> -->
 
@@ -95,10 +96,13 @@ export default {
 
 <style scoped>
 h1,
-h3,
 h4,
 h5,
 p {
 	color: white;
+}
+
+h3 {
+	color: gray;
 }
 </style>
