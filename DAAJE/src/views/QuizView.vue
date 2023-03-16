@@ -13,6 +13,7 @@ const currentQuestionIndex = ref(0);
 const sumOfCorrectAnswers = ref(0);
 const studentId = ref(0);
 const showResults = ref(false);
+let fetchedStudentResults = [];
 
 const route = useRoute();
 const paramsId = parseInt(route.params.id);
@@ -49,11 +50,13 @@ const onChoiceSelected = (isCorrect) => {
     // **relative pathing will result in the request being made to 127.0.0.1**
     //   The request needs to go to "http://localhost:8080". Proxying only changes
     //   the origin header, not the request path. **
+
     axios.post('http://localhost:8080/post/result?id=01', {
       resultData
     })
       .then(response => {
-        console.log(response);
+        useResultStore.fetchedResults = response
+        console.log(fetchedStudentResults);
       })
       .catch(error => {
         console.log(error);
@@ -77,7 +80,7 @@ const onChoiceSelected = (isCorrect) => {
       </div>
     </section>
     <main class="main-content">
-      <ProgressBar :currentQuestion="currentQuestionIndex + 1" />
+      <ProgressBar :currentQuestion="currentQuestionIndex + 1" :quizToShow="quizToShow" />
       <div>
         <TheQuestion v-if="!showResults" :question="quizToShow.questions[currentQuestionIndex]"
           @selectChoice="onChoiceSelected" @addToResult="resultStore.addResult($event, { question, choice })" />

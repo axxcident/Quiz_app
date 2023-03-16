@@ -44,7 +44,7 @@ export default {
 		// })
 
 		for (let i = 0; i < fetchedResults.length; i++) {
-			console.log(fetchedResults[i][j]['option']['isCorrect'])
+			console.log(fetchedResults[i][0]['option']['isCorrect'])
 			for (let j = 0; j < fetchedResults[0][0]['option']['isCorrect'].length; j++) {
 
 			}
