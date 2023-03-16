@@ -24,14 +24,44 @@ export default {
 		// 4) show the average of total results for right/wrong
 		// 5)
 
+		let resultSumArray = [];
+		console.log(fetchedResultsShortened)
+		let index = 0;
+
 		fetchedResultsShortened.forEach(elem => {
-			console.log(elem.resultData)
-			elem.resultData.forEach(elem => {
-				// Getting students answer and checking if its correct
-				console.log(elem.option.isCorrect)
-				console.log(elem.question.id)
-			})
+
+			while (index < fetchedResultsShortened[0].resultData.length) {
+				let questionId = elem.resultData[index].question.id
+				let question = elem.resultData[index].question.text
+				let resultSummary = elem.resultData[index].option.isCorrect
+
+				resultSumArray.push([[questionId], [question], [resultSummary]])
+
+				index++;
+			}
+
+
+			// console.log(elem.resultData, Object.keys(elem.resultData))
+			// resultSumArray.push([elem.resultData])
+
+			// Getting students answer and checking if its correct
+			// console.log(elem.option.isCorrect)
+
+			// add this to resultSumArray as first element
+			// console.log(elem.question.id, elem.question.text)
+
+			// count this, elem.option.isCorrect and add +1 for each true
+			// add as second element in resultSumArray.
+
+			// example, 
+			// [
+			//   [Question, result],
+			//   [Question, result],
+			// ]
+
+			// resultSumArray.push([elem.question.id, elem.question.text, elem.option.isCorrect])
 		})
+		console.log(resultSumArray)
 
 		return { fetchedResults, fetchedResultsShortened }
 	}
@@ -45,8 +75,8 @@ export default {
 			<div v-for="(result, index) of fetchedResultsShortened">
 				<p>{{ result }}</p>
 				<!-- <h5>Fråga {{ index + 1 }}, {{ result[index].question.text }}</h5>
-																																			<p>{{ result[index].question.text }}</p>
-																																			<p>{{ result[index].question.text }}</p> -->
+																																																																																																																			<p>{{ result[index].question.text }}</p>
+																																																																																																																			<p>{{ result[index].question.text }}</p> -->
 			</div>
 
 			<!-- går det att återanvända den här komponnent? -->
