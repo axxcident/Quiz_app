@@ -16,6 +16,9 @@ const showResults = ref(false);
 let fetchedStudentResults = [];
 
 const route = useRoute();
+//                  * commented out the parseInt(). As of now id:s work with strict (===) string comparison.
+//                    This might be unsecure. If so look into regex solution for string parsing and convert to
+//                    JS number value (64 bit float), though this will not be type-safe for comparisons * //E.N
 const paramsId = /* parseInt( */route.params.id/* ) */;
 
 const resultStore = useResultStore();
