@@ -33,11 +33,13 @@ export default {
 		fetchedResultsShortened.forEach(elem => {
 
 			while (index < fetchedResultsShortened[0].resultData.length) {
+				let resultSummary = 0;
 				let questionId = elem.resultData[index].question.id
 				let question = elem.resultData[index].question.text
-				let resultSummary = elem.resultData[index].option.isCorrect
+				let isCorrect = elem.resultData[index].option.isCorrect
 
-				resultSumArray.push([[questionId], [question], [resultSummary]])
+				if (isCorrect) { resultSummary += 1 };
+				resultSumArray.push({ questionId, question, resultSummary })
 
 				index++;
 			}
@@ -76,7 +78,9 @@ export default {
 			<h1>Results page For Teacher</h1>
 			<p>-- Visa chart js här för överblick av hur det gick --</p>
 			<div v-for="(result, index) in resultSumArray">
-				<p>{{ result[0][0] }}: {{ result[1][0] }}, {{ result[2][0] }} -- summera resultat här (istället för true)</p>
+				<p>{{ result.questionId }}: {{ result.question }}. Elevers svar: {{ result.resultSummary }} rätt av {{
+					fetchedResultsShortened.length }} inkomna svar
+				</p>
 			</div>
 
 			<!-- går det att återanvända den här komponnent? -->
