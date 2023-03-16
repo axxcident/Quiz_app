@@ -12,6 +12,7 @@ export default {
 	setup() {
 		const resultStore = useResultStore();
 		const fetchedResults = resultStore.fetchedResults;
+		const fetchedResultsShortened = fetchedResults[0].response.data.slice(1);
 		// console.log(fetchedResults)
 
 		// const fetchedResultsQuestionsArr = fetchedResults.forEach(elem => elem.question.options.filter(option => option.isCorrect === true)[0].text)
@@ -44,10 +45,8 @@ export default {
 		// })
 
 		for (let i = 0; i < fetchedResults.length; i++) {
-			console.log(fetchedResults[i][0]['option']['isCorrect'])
-			for (let j = 0; j < fetchedResults[0][0]['option']['isCorrect'].length; j++) {
-
-			}
+			console.log(fetchedResults[0]['response']['data'][i])
+			// console.log(fetchedResults[i][0]['option']['isCorrect'])
 		}
 
 		// console.log(fetchedResults[1][0]['option']['isCorrect'])
@@ -80,7 +79,7 @@ export default {
 
 
 
-		return { fetchedResults }
+		return { fetchedResults, fetchedResultsShortened }
 	}
 }
 </script>
@@ -89,11 +88,11 @@ export default {
 	<div class="row">
 		<div class="col">
 			<h1>Results page For Teacher</h1>
-			<p>{{ fetchedResultsQuestionsArr }}</p>
-			<div v-for="(result, index) of fetchedResults">
-				<h5>Fråga {{ index + 1 }}, {{ result[index].question.text }}</h5>
-				<p>{{ result[index].question.text }}</p>
-				<p>{{ result[index].question.text }}</p>
+			<div v-for="(result, index) of fetchedResultsShortened">
+				<p>{{ result }}</p>
+				<!-- <h5>Fråga {{ index + 1 }}, {{ result[index].question.text }}</h5>
+																			<p>{{ result[index].question.text }}</p>
+																			<p>{{ result[index].question.text }}</p> -->
 			</div>
 
 			<!-- går det att återanvända den här komponnent? -->
