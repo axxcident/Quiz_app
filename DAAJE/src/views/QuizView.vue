@@ -15,7 +15,7 @@ const studentId = ref(0);
 const showResults = ref(false);
 
 const route = useRoute();
-const paramsId = parseInt(route.params.id);
+const paramsId = /* parseInt( */route.params.id/* ) */;
 
 const resultStore = useResultStore();
 

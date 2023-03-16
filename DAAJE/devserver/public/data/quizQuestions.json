@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "mock_vue",
     "img": "./src/imgs/Vuejs_Logo_2.svg.png",
     "name": "Vue",
     "questions": [
@@ -607,13 +607,13 @@
     ]
   },
   {
-    "id": 2,
+    "id": "mock_react",
     "img": "./src/imgs/React-icon.svg.png",
     "name": "React",
     "questions": []
   },
   {
-    "id": 3,
+    "id": "mock_js",
     "img": "./src/imgs/native-javascript.png",
     "name": "Native JS",
     "questions": []
