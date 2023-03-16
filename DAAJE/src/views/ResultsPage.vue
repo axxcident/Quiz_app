@@ -19,10 +19,12 @@ export default {
 		// sum of results
 		// 1) get total results data as object, DONE (line 26)
 		// 2) look through each result object and find right/wrong for each question, DONE
-		// 3) Store in a new array with quiz id
-		// 3) divide with number of total quiz results
-		// 4) show the average of total results for right/wrong
-		// 5)
+		// 3) Store in a new array with quiz id, DONE
+		// 4) set resultSummary to 0,
+		// 5) set if student result is right, +1
+		// 6) sum all correct answers in resultSummary
+		// 7) divide with number of total quiz results
+		// 8) show the average of total results for right/wrong
 
 		let resultSumArray = [];
 		console.log(fetchedResultsShortened)
@@ -75,8 +77,8 @@ export default {
 			<div v-for="(result, index) of fetchedResultsShortened">
 				<p>{{ result }}</p>
 				<!-- <h5>Fråga {{ index + 1 }}, {{ result[index].question.text }}</h5>
-																																																																																																																			<p>{{ result[index].question.text }}</p>
-																																																																																																																			<p>{{ result[index].question.text }}</p> -->
+																																																																																																																					<p>{{ result[index].question.text }}</p>
+																																																																																																																					<p>{{ result[index].question.text }}</p> -->
 			</div>
 
 			<!-- går det att återanvända den här komponnent? -->
