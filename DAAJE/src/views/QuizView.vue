@@ -11,6 +11,7 @@ import TimerComponent from "../components/TimerComponent.vue";
 
 const currentQuestionIndex = ref(0);
 const sumOfCorrectAnswers = ref(0);
+const studentId = ref(0);
 const showResults = ref(false);
 
 const route = useRoute();
@@ -36,6 +37,30 @@ const onChoiceSelected = (isCorrect) => {
 
   if (quizToShow.questions.length - 1 === currentQuestionIndex.value) {
     showResults.value = true;
+
+    // POST results to backend
+    // när showResults.value = true, är quizzet klart och skicka in
+    // värdet att skicka, resultStore.results
+    const resultData = resultStore.results
+    console.log(resultData)
+
+    // send resultData to pinia just to keep working
+    resultStore.addResultSum({ ...resultData })
+    // **relative pathing will result in the request being made to 127.0.0.1**
+    //   The request needs to go to "http://localhost:8080". Proxying only changes
+    //   the origin header, not the request path. **
+    axios.post('http://localhost:8080/post/result?id=01', {
+      resultData
+    })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    resultStore.results = [];
+
   }
 
   currentQuestionIndex.value++;
@@ -57,7 +82,8 @@ const onChoiceSelected = (isCorrect) => {
         <TheQuestion v-if="!showResults" :question="quizToShow.questions[currentQuestionIndex]"
           @selectChoice="onChoiceSelected" @addToResult="resultStore.addResult($event, { question, choice })" />
 
-        <TheResults v-else :quizLength="quizToShow.questions.length" :sumOfCorrectAnswers="sumOfCorrectAnswers" />
+        <TheResults v-else :studentId="studentId" :quizLength="quizToShow.questions.length"
+          :sumOfCorrectAnswers="sumOfCorrectAnswers" />
       </div>
     </main>
   </div>

@@ -14,6 +14,11 @@ const createDynamicReplacer = (postObj) => {/* Use recursion to iterate the inco
 											   and nested properties for the replacer*/
 	return Object.getOwnPropertyNames(postObj);
 };
+//TODO
+const findDatabaseObject = (fileName) => { //search the db folders and return the path to the dir which contains the file
+	if(typeof fileName != "string") { return console.log("Type error. The value passed was not of type: string");}
+	return path.join(dataPath, fileName);
+};
 
 //  Main export body
 const mwFunctions = {
@@ -57,14 +62,15 @@ const mwFunctions = {
 			req.body[0].id = newId;
 			console.log(`Appended ID: ${newId}`);
 
-			//assign an img logo
-			req.body[0].img = "/img/placeholder_img.jpg";
+			//assign an img logo	
+			//						*dynamically read the directory files and find the img we want*			
+			req.body[0].img = `/img/${fs.readdirSync(path.normalize(__dirname + `/../public/img`))[Array.indexOf("placeholder_img.jpg")]}`;
 
 			next();
 	    },
 	writeNewQuiz(req, res) {//write new quiz into db
 			// create a frame array for stringify to know which properties to stringify
-			console.log(`Handler recieved body: ${req.body} with id: ${req.body.uuid}`);
+			console.log(`Handler recieved body: ${req.body} with id: ${req.body.id}`);
 
 			// create an object from recieved array
 			const dataObj = new Object(req.body);
@@ -79,18 +85,42 @@ const mwFunctions = {
 			res.status(200).send({ msg: "Posted new quiz!", id: req.body[0].id });
 		},
 	recieveResult(req, res, next) { //recieve a new student result post. Write into temp db
-		const newResult = req.body;
+		console.log(`Recieved student result data: ${req.body.resultData}`);
+
+		
 		const newPath = path.join(dataPath, "sessionResults.json");
-		console.log(`Recieved student data: ${newResult}`);
-		fs.appendFile(newPath, newResult, (err) => {
-				if(err) {throw err};
-				res.locals.path = newPath;
-				next();
-			});
-		},
+		if (!fs.existsSync(newPath)) {
+
+				const newResult = [req.body];
+
+				// give the session an id to separate sessions
+				newResult.unshift({ sessionId: uuidv4() });
+
+				// create a new file
+				fs.appendFile(newPath, JSON.stringify(newResult), (err) => {
+						if(err) { throw err };
+						console.log(`Student result data creation success`);
+						next();
+					});
+				}
+		else {
+			fs.readFile(newPath, (err, data) => {
+					if (err) { throw err; }
+					const currentData = JSON.parse(data);
+					console.log(`Extant data in file: ${currentData[0]}`);
+					currentData.push(req.body);
+					fs.writeFile(newPath, JSON.stringify(currentData), () => {
+						if(err) { throw err };
+						console.log(`Student result data write success`);
+						next();
+					});
+				});
+		}
+	},
 	sendResults(req, res) { //return the updated concatinated student(s) result object
-		fs.readFile(req.locals.path, (err, data) => {
-			res.status(200).send(JSON.parse(data))
+		fs.readFile(findDatabaseObject("sessionResults.json"), (err, data) => {
+			if(err) { return console.log(`Error: ${err}`) }
+			res.status(200).send(JSON.parse([data]));
 		});
 	},
 };
