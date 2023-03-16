@@ -1,6 +1,7 @@
 <script>
 import TheResults from '../components/TheResults.vue';
 import { useResultStore } from "../stores/resultStore"
+import Chart from 'chart.js/auto'
 
 export default {
 	components: { TheResults },
@@ -50,15 +51,39 @@ export default {
 
 		return { fetchedResults, fetchedResultsShortened, resultSumArray, totalCorrectAnswers, totalAmountQuestions }
 	},
-
+	mounted() {
+		// 	const ctx = document.getElementById('myChart');
+		// 	const MyChart = new Chart(ctx, {
+		// 		type: "pie",
+		// 		data: {
+		// 			labels: ["Rätt svar", "Totala frågor"],
+		// 			datasets: [
+		// 				{
+		// 					label: "Resultat av Quiz",
+		// 					data: [this.totalCorrectAnswers, this.totalAmountQuestions],
+		// 					// backgroundColor: "rgba(54,73,93,.5)",
+		// 					// borderColor: "#36495d",
+		// 					borderWidth: 3,
+		// 				},
+		// 			],
+		// 		},
+		// 	})
+		// 	MyChart;
+	}
 }
 </script>
 
 <template>
 	<div class="row">
 		<div class="col">
-			<h1>Results page For Teacher</h1> {{ totalCorrectAnswers }} / {{ totalAmountQuestions }}
-			<p>-- Visa chart js här för överblick av hur det gick --</p>
+			<h1 class="mb-2 mt-2">Results page For Teacher</h1>
+			<h3 class="mb-3">Total results for this quiz</h3>
+			<h4 class="mb-4"> >> {{ totalCorrectAnswers }} / {{ totalAmountQuestions }} -- ({{ fetchedResultsShortened.length
+			}}
+				inlämande quiz.)</h4>
+
+			<!-- <canvas id="myChart"></canvas> -->
+
 			<div v-for="(result, index) in resultSumArray">
 				<h5>{{ result.questionId }}: {{ result.question }}</h5>
 				<p class="mb-4">Elevers svar: {{ result.resultSummary }} rätt av {{
@@ -70,6 +95,8 @@ export default {
 
 <style scoped>
 h1,
+h3,
+h4,
 h5,
 p {
 	color: white;
