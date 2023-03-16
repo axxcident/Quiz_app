@@ -16,7 +16,7 @@ const showResults = ref(false);
 let fetchedStudentResults = [];
 
 const route = useRoute();
-const paramsId = parseInt(route.params.id);
+const paramsId = /* parseInt( */route.params.id/* ) */;
 
 const resultStore = useResultStore();
 

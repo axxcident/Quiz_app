@@ -63,8 +63,10 @@ const mwFunctions = {
 			console.log(`Appended ID: ${newId}`);
 
 			//assign an img logo	
+			const imgFileArray = fs.readdirSync(path.normalize(__dirname + `/../public/img`));
+			console.log(`files in img: ${imgFileArray}`);
 			//						*dynamically read the directory files and find the img we want*			
-			req.body[0].img = `/img/${fs.readdirSync(path.normalize(__dirname + `/../public/img`))[Array.indexOf("placeholder_img.jpg")]}`;
+			req.body[0].img = `/img/${imgFileArray[imgFileArray.indexOf("placeholder_img.jpg")]}`;
 
 			next();
 	    },
