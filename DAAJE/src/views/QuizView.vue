@@ -52,7 +52,7 @@ const onChoiceSelected = (isCorrect) => {
       </div>
     </section>
     <main class="main-content">
-      <ProgressBar :currentQuestion="currentQuestionIndex + 1" />
+      <ProgressBar :currentQuestion="currentQuestionIndex + 1" :quizToShow="quizToShow" />
       <div>
         <TheQuestion v-if="!showResults" :question="quizToShow.questions[currentQuestionIndex]"
           @selectChoice="onChoiceSelected" @addToResult="resultStore.addResult($event, { question, choice })" />
