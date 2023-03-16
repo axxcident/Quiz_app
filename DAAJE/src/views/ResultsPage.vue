@@ -12,8 +12,13 @@ export default {
 	setup() {
 		const resultStore = useResultStore();
 		const fetchedResults = resultStore.fetchedResults;
-		const fetchedResultsShortened = fetchedResults[0].response.data.slice(1);
-		// console.log(fetchedResults)
+		const fetchedResultsShortened = [...fetchedResults[0].response.data.slice(1)];
+
+		// Sort fetched result data
+		fetchedResultsShortened.forEach(elem => {
+			console.log(elem.resultData)
+		})
+
 
 		// const fetchedResultsQuestionsArr = fetchedResults.forEach(elem => elem.question.options.filter(option => option.isCorrect === true)[0].text)
 
@@ -91,8 +96,8 @@ export default {
 			<div v-for="(result, index) of fetchedResultsShortened">
 				<p>{{ result }}</p>
 				<!-- <h5>Fråga {{ index + 1 }}, {{ result[index].question.text }}</h5>
-																			<p>{{ result[index].question.text }}</p>
-																			<p>{{ result[index].question.text }}</p> -->
+																											<p>{{ result[index].question.text }}</p>
+																											<p>{{ result[index].question.text }}</p> -->
 			</div>
 
 			<!-- går det att återanvända den här komponnent? -->
