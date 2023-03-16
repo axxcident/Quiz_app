@@ -13,7 +13,6 @@ export default {
   components: { QuizCard },
   async setup() {
     const result = await axios.get("http://localhost:8080/quiz_questions");
-    // const result = await axios.get('http://127.0.0.1:8080/quiz_questions/')
     const quizes = ref(result.data);
     console.log(quizes.value);
 
@@ -25,7 +24,7 @@ export default {
 .d-flex {
   display: flex;
   flex-direction: column;
-	gap: 1rem;
-	
+  gap: 1rem;
+
 }
 </style>
