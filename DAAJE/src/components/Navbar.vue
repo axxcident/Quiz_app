@@ -158,7 +158,7 @@ export default {
   top: 45px;
   right: 0;
   width: 100%;
-  background-color: hsl(300, 48%, 56%);
+  background-color: hsl(300, 24%, 17%);
   z-index: 1;
 }
 
