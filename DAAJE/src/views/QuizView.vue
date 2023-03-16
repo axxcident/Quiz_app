@@ -16,12 +16,13 @@ const showResults = ref(false);
 let fetchedStudentResults = [];
 
 const route = useRoute();
-//                  * commented out the parseInt(). As of now id:s work with strict (===) string comparison.
-//                    This might be unsecure. If so look into regex solution for string parsing and convert to
-//                    JS number value (64 bit float), though this will not be type-safe for comparisons * //E.N
-const paramsId = /* parseInt( */route.params.id/* ) */;
+const paramsId = route.params.id;
 
 const resultStore = useResultStore();
+
+// empty resultStore for new quiz
+resultStore.$reset()
+
 
 const result = await axios.get("http://localhost:8080/quiz_questions");
 const quizes = ref(result.data);
@@ -42,31 +43,22 @@ const onChoiceSelected = (isCorrect) => {
   if (quizToShow.questions.length - 1 === currentQuestionIndex.value) {
     showResults.value = true;
 
-    // POST results to backend
-    // när showResults.value = true, är quizzet klart och skicka in
-    // värdet att skicka, resultStore.results
+    // POST to backend
+    // prepare all questions from resultStore.results
+    // to store in resultData for backend POST
     const resultData = resultStore.results
     console.log(resultData)
-
-    // send resultData to pinia just to keep working
-    resultStore.addResultSum({ ...resultData })
-    // **relative pathing will result in the request being made to 127.0.0.1**
-    //   The request needs to go to "http://localhost:8080". Proxying only changes
-    //   the origin header, not the request path. **
 
     axios.post('http://localhost:8080/post/result?id=01', {
       resultData
     })
       .then(response => {
-        useResultStore.fetchedResults = response
-        console.log(fetchedStudentResults);
+        resultStore.addResultSum({ response })
+        console.log(response);
       })
       .catch(error => {
         console.log(error);
       });
-
-    resultStore.results = [];
-
   }
 
   currentQuestionIndex.value++;
