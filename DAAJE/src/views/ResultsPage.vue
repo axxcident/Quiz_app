@@ -65,7 +65,7 @@ export default {
 		})
 		console.log(resultSumArray)
 
-		return { fetchedResults, fetchedResultsShortened }
+		return { fetchedResults, fetchedResultsShortened, resultSumArray }
 	}
 }
 </script>
@@ -74,15 +74,13 @@ export default {
 	<div class="row">
 		<div class="col">
 			<h1>Results page For Teacher</h1>
-			<div v-for="(result, index) of fetchedResultsShortened">
-				<p>{{ result }}</p>
-				<!-- <h5>Fråga {{ index + 1 }}, {{ result[index].question.text }}</h5>
-																																																																																																																					<p>{{ result[index].question.text }}</p>
-																																																																																																																					<p>{{ result[index].question.text }}</p> -->
+			<p>-- Visa chart js här för överblick av hur det gick --</p>
+			<div v-for="(result, index) in resultSumArray">
+				<p>{{ result[0][0] }}: {{ result[1][0] }}, {{ result[2][0] }} -- summera resultat här (istället för true)</p>
 			</div>
 
 			<!-- går det att återanvända den här komponnent? -->
-			<TheResults :teacher="teacher" />
+			<!-- <TheResults :teacher="teacher" /> -->
 		</div>
 	</div>
 </template>
