@@ -1,10 +1,8 @@
 <script>
-// import TheResults from '../components/TheResults.vue';
 import { useResultStore } from "../stores/resultStore"
 // import Chart from 'chart.js/auto'
 
 export default {
-	// components: { TheResults },
 	data() {
 		return {
 			teacher: true
