@@ -25,15 +25,7 @@ export default {
 			fetchedResultData: [],
 		}
 	},
-	methods: {
-		fetchResults() {
-			fetch('https://avancera.app/cities/')
-				.then((response) => response.json())
-				.then((result) => {
-					this.fetchedResultData = result
-				})
-		}
-	},
+	methods: {},
 	computed: {
 		isTeacher(teacher) {
 			if (teacher) {
@@ -44,7 +36,6 @@ export default {
 		}
 	},
 	mounted() {
-		this.fetchResults();
 		const ctx = document.getElementById('myChart');
 		const MyChart = new Chart(ctx, {
 			type: "pie",
