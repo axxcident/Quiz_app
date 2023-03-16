@@ -12,8 +12,8 @@ export const useResultStore = defineStore("ResultStore", {
     addResult(question) {
       this.results.push({ ...question });
     },
-    addResultSum(studentId, resultForQuiz) {
-      this.fetchedResults.push({ ...studentId, ...resultForQuiz });
+    addResultSum(resultForQuiz) {
+      this.fetchedResults.push({ ...resultForQuiz });
     },
   },
   getters: {
