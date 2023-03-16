@@ -34,8 +34,8 @@ const mwFunctions = {
 	    },
 	getMockQuestions(req, res) {
 			//read buffer on request and parse to get js objects
-										/* **NOTICE: below is a sync function and wont scale with
-										many requests, risk of server freezing up NOTOCE** */
+										/* **NOTICE** below is a sync function and wont scale with
+										many requests, risk of server freezing up **NOTICE** */
 			const userQuestionsBuffer = fs.readFileSync(path.join(dataPath, 'sessionUserQuiz.json'));
 			const userQuestions = JSON.parse(userQuestionsBuffer);
 			const parsedBuffer = JSON.parse(mockQuestions);
@@ -67,6 +67,8 @@ const mwFunctions = {
 			console.log(`files in img: ${imgFileArray}`);
 			//						*dynamically read the directory files and find the img we want*			
 			req.body[0].img = `/img/${imgFileArray[imgFileArray.indexOf("placeholder_img.jpg")]}`;
+
+			// ** If implementing custom choosable images. Use query variable instead of placeholder above. **
 
 			next();
 	    },
