@@ -1,14 +1,14 @@
 <template>
     <div class="m-space">
-      <AppButton
-      @click="showForm = true"
-        color="light"
-        size="medium"
-        width="full-width"
-        fontWeight=""
-        padding="p-large"
-        >Create Quiz
-      </AppButton>
+        <AppButton
+            @click="showForm = true"
+            color="light"
+            size="medium"
+            width="full-width"
+            fontWeight=""
+            padding="p-large"
+            >Create Quiz
+        </AppButton>
     </div>
     <div>
         <button @click="showForm = true">Create Quiz</button>
@@ -17,6 +17,20 @@
             <!---Submitprevent så den kan routas till egen backend-->
             <!---Gör en V-if som initialt gömmer formen som sen blir triggad av knappklicket-->
             <h2>Create Quiz</h2>
+            <!---Quizname label, låter användaren namnge quiz-->
+            <div>
+                <label for="quiz-name">Quiz Name:</label>
+                <input id="quiz-name" type="text" v-model="quizName" required />
+            </div>
+            <!---Quizcategory label, låter användaren kategorisera-->
+            <div>
+                <label for="quiz-category">Quiz Category:</label>
+                <select id="quiz-category" v-model="quizCategory">
+                    <option v-for="category in categories" :value="category">
+                        {{ category }}
+                    </option>
+                </select>
+            </div>
             <div v-for="(question, index) in questions" :key="index">
                 <!---Loopar igenom varje question och använder index för att identifiera positionen i varje element-->
                 <label :for="'question-' + index"
@@ -28,13 +42,14 @@
                     v-model="question.text"
                     required
                 />
+
                 <div
                     v-for="(option, optionIndex) in question.options"
                     :key="optionIndex"
                 >
                     <label :for="'option-' + index + '-' + optionIndex"
                         >Option {{ optionIndex + 1 }}</label
-                    ><!-- **lägg till input för att döpa den nya quizen!** -->
+                    >
                     <input
                         :id="'option-' + index + '-' + optionIndex"
                         type="text"
@@ -53,17 +68,45 @@
                     >
                 </div>
             </div>
+            <!---Quizspråk, låter användaren välja språk -->
+            <div>
+                <label for="language-select">Language:</label>
+                <select id="language-select" v-model="selectedLanguage">
+                    <option
+                        v-for="language in languages"
+                        :value="language"
+                        :key="language"
+                    >
+                        {{ language }}
+                    </option>
+                </select>
+            </div>
             <div>
                 <button type="button" @click="addQuestion">Add Question</button>
                 <button type="submit">Create</button>
             </div>
             <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
         </form>
+        <button @click="getQuiz">Get Quiz</button>
+        <ul v-if="quiz">
+            <li v-for="(question, index) in quiz.questions" :key="index">
+                <h3>{{ question.text }}</h3>
+                <ul>
+                    <li
+                        v-for="(option, optionIndex) in question.options"
+                        :key="optionIndex"
+                    >
+                        {{ option }}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
     </div>
 </template>
 
 <script>
-import AppButton from "./AppButton.vue";
+    import AppButton from './AppButton.vue'
     export default {
         data() {
             return {
@@ -81,8 +124,18 @@ import AppButton from "./AppButton.vue";
                         correctAnswer: null
                     }
                 ],
-                createdQuiz: null, //Felmeddelande om inte quizet går att visas
-                errorMessage: ''
+                quiz: null,
+                errorMessage: null, //Felmeddelande om inte quizet går att visas
+                quizName: '',
+                languages: [
+                    'Svenska',
+                    'English',
+                    'Deutsch',
+                    'Español',
+                    'Français'
+                ],
+                selectedLanguage: '',
+                categories: ['Vue', 'React', 'JavaScript', 'Node', 'Other']
             }
         },
         methods: {
@@ -103,14 +156,19 @@ import AppButton from "./AppButton.vue";
                 // **Glöm inte att ändra propertyn "name" till en variabel för userns eget input **
                 const postBody = [
                     {
-                        id: "",
-                        img: "",
-                        name: "My Quiz",
-                        questions: this.questions
+                        id: '',
+                        img: '',
+                        name: this.quizName,
+                        questions: this.questions,
+                        category: this.quizCategory
                     }
                 ]
+                if (this.selectedLanguage) {
+                    postBody[0].language = this.selectedLanguage
+                } /*Om det finns ett valt språk, så lägger denna till det som det första elementet i postBody arrayen. */
                 try {
-                    const response = await fetch(//hotfixed request path 8/3 /E.N
+                    const response = await fetch(
+                        //hotfixed request path 8/3 /E.N
                         'http://localhost:8080/post/create_quiz',
                         {
                             method: 'POST',
@@ -119,7 +177,7 @@ import AppButton from "./AppButton.vue";
                             },
                             body: JSON.stringify(postBody)
                         }
-                    ).then(location.reload())//added reload page after posting new quiz
+                    ).then(location.reload()) //added reload page after posting new quiz
                     const data = await response.json()
                     console.log(data)
                     this.showForm = false
@@ -141,26 +199,43 @@ import AppButton from "./AppButton.vue";
                 }
             }
         },
-	components: { AppButton },
+        getQuiz() {
+            this.errorMessage = null //Klickfunktion för att kalla på rätt quiz
+            this.quiz = this.generateQuiz()
+        },
+        generateQuiz() {
+            //Skapar en quiz baserat på användarens inmatning
+            const quiz = {
+                questions: this.questions.map((question) => ({
+                    text: question.text,
+                    options: question.options.map((option) => option.text),
+                    correctAnswer: question.correctAnswer
+                }))
+            }
+            console.log(quiz) //Loggar den och sparar den i var quiz
+            return quiz
+        },
+
+        components: { AppButton }
     }
 </script>
 
 <style>
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  max-width: 600px;
-}
-form input {
-  margin-bottom: 10px;
-}
-.m-space {
-    margin: 3rem 0;
-}
-.error {
-  color: red;
-  margin-top: 10px;
-}
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        max-width: 600px;
+    }
+    form input {
+        margin-bottom: 10px;
+    }
+    .m-space {
+        margin: 3rem 0;
+    }
+    .error {
+        color: red;
+        margin-top: 10px;
+    }
 </style>
