@@ -40,7 +40,7 @@ export default {
           cardTitle: "Create questions",
           cardDescription: "Create tailored questions for a course",
           cardButton: "Action",
-          path: "/create-questions",
+          path: "/create-quiz",
         },
         {
           cardTitle: "Previous Quiz",
@@ -52,7 +52,7 @@ export default {
           cardTitle: "Review prior results",
           cardDescription: "Review students previous results",
           cardButton: "Action",
-          path: "prior-results",
+          path: "/quiz",
         },
       ],
       userInfo: {

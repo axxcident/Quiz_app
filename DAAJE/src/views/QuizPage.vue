@@ -17,7 +17,8 @@ import QuizQuestions from "../components/QuizQuestions.vue";
       <main class="main-content">
         <div class="quiz-container">
           <QuizQuestions />
-          <QuizForm />
+          <!-- created a specific page instead, the card "Create Quiz" on homepage navigates to the page  -->
+          <!-- <QuizForm /> --> 
         </div>
       </main>
     </div>

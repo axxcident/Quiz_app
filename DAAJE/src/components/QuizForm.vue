@@ -13,13 +13,13 @@
     <div>
         <button @click="showForm = true">Create Quiz</button>
         <!---Click event som triggar igång formen-->
-        <form v-if="showForm" @submit.prevent="submitForm">
+        <form v-if="showForm" @submit.prevent="submitForm" >
             <!---Submitprevent så den kan routas till egen backend-->
             <!---Gör en V-if som initialt gömmer formen som sen blir triggad av knappklicket-->
             <h2>Create Quiz</h2>
             <!---Quizname label, låter användaren namnge quiz-->
-            <div>
-                <label for="quiz-name">Quiz Name:</label>
+            <div class="full-width">
+                <label class="full-width" for="quiz-name">Quiz Name:</label>
                 <input id="quiz-name" type="text" v-model="quizName" required />
             </div>
             <!---Quizcategory label, låter användaren kategorisera-->
@@ -220,6 +220,10 @@
 </script>
 
 <style>
+  .full-width {
+    width: 100%;
+    
+  }
     form {
         display: flex;
         flex-direction: column;
