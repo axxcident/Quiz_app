@@ -11,10 +11,15 @@ import TimerComponent from "../components/TimerComponent.vue";
 
 const currentQuestionIndex = ref(0);
 const sumOfCorrectAnswers = ref(0);
+const studentId = ref(0);
 const showResults = ref(false);
+let fetchedStudentResults = [];
 
 const route = useRoute();
-const paramsId = parseInt(route.params.id);
+//                  * commented out the parseInt(). As of now id:s work with strict (===) string comparison.
+//                    This might be unsecure. If so look into regex solution for string parsing and convert to
+//                    JS number value (64 bit float), though this will not be type-safe for comparisons * //E.N
+const paramsId = /* parseInt( */route.params.id/* ) */;
 
 const resultStore = useResultStore();
 
@@ -36,6 +41,32 @@ const onChoiceSelected = (isCorrect) => {
 
   if (quizToShow.questions.length - 1 === currentQuestionIndex.value) {
     showResults.value = true;
+
+    // POST results to backend
+    // när showResults.value = true, är quizzet klart och skicka in
+    // värdet att skicka, resultStore.results
+    const resultData = resultStore.results
+    console.log(resultData)
+
+    // send resultData to pinia just to keep working
+    resultStore.addResultSum({ ...resultData })
+    // **relative pathing will result in the request being made to 127.0.0.1**
+    //   The request needs to go to "http://localhost:8080". Proxying only changes
+    //   the origin header, not the request path. **
+
+    axios.post('http://localhost:8080/post/result?id=01', {
+      resultData
+    })
+      .then(response => {
+        useResultStore.fetchedResults = response
+        console.log(fetchedStudentResults);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    resultStore.results = [];
+
   }
 
   currentQuestionIndex.value++;
@@ -52,12 +83,13 @@ const onChoiceSelected = (isCorrect) => {
       </div>
     </section>
     <main class="main-content">
-      <ProgressBar :currentQuestion="currentQuestionIndex + 1" />
+      <ProgressBar :currentQuestion="currentQuestionIndex + 1" :quizToShow="quizToShow" />
       <div>
         <TheQuestion v-if="!showResults" :question="quizToShow.questions[currentQuestionIndex]"
           @selectChoice="onChoiceSelected" @addToResult="resultStore.addResult($event, { question, choice })" />
 
-        <TheResults v-else :quizLength="quizToShow.questions.length" :sumOfCorrectAnswers="sumOfCorrectAnswers" />
+        <TheResults v-else :studentId="studentId" :quizLength="quizToShow.questions.length"
+          :sumOfCorrectAnswers="sumOfCorrectAnswers" />
       </div>
     </main>
   </div>
