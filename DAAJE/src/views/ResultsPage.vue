@@ -14,77 +14,56 @@ export default {
 		const fetchedResults = resultStore.fetchedResults;
 		const fetchedResultsShortened = [...fetchedResults[0].response.data.slice(1)];
 
-		// Sort fetched result data
-
-		// sum of results
-		// 1) get total results data as object, DONE (line 26)
-		// 2) look through each result object and find right/wrong for each question, DONE
-		// 3) Store in a new array with quiz id, DONE
-		// 4) set resultSummary to 0,
-		// 5) set if student result is right, +1
-		// 6) sum all correct answers in resultSummary
-		// 7) divide with number of total quiz results
-		// 8) show the average of total results for right/wrong
-
 		let resultSumArray = [];
-		console.log(fetchedResultsShortened)
+		let totalCorrectAnswers = 0;
+		let totalAmountQuestions = 0;
 		let index = 0;
 
+		// Sort fetched result data
+		// looping through the entire list of answers in all quiz results
 		fetchedResultsShortened.forEach(elem => {
 
 			while (index < fetchedResultsShortened[0].resultData.length) {
 				let resultSummary = 0;
 				let questionId = elem.resultData[index].question.id
 				let question = elem.resultData[index].question.text
-				let isCorrect = elem.resultData[index].option.isCorrect
 
-				if (isCorrect) { resultSummary += 1 };
-				resultSumArray.push({ questionId, question, resultSummary })
+				resultSumArray.push({ questionId, question, resultSummary, totalAmountQuestions })
 
 				index++;
 			}
-
-
-			// console.log(elem.resultData, Object.keys(elem.resultData))
-			// resultSumArray.push([elem.resultData])
-
-			// Getting students answer and checking if its correct
-			// console.log(elem.option.isCorrect)
-
-			// add this to resultSumArray as first element
-			// console.log(elem.question.id, elem.question.text)
-
-			// count this, elem.option.isCorrect and add +1 for each true
-			// add as second element in resultSumArray.
-
-			// example, 
-			// [
-			//   [Question, result],
-			//   [Question, result],
-			// ]
-
-			// resultSumArray.push([elem.question.id, elem.question.text, elem.option.isCorrect])
 		})
-		console.log(resultSumArray)
 
-		return { fetchedResults, fetchedResultsShortened, resultSumArray }
-	}
+		// for loop to count each correct answer in each quiz result
+		// and add total right for each individual question.
+		for (let i = 0; i < fetchedResultsShortened.length; i++) {
+			for (let j = 0; j < fetchedResultsShortened[i].resultData.length; j++) {
+				const studentAnswer = fetchedResultsShortened[i].resultData[j].option.isCorrect;
+				totalAmountQuestions++;
+
+				if (studentAnswer) {
+					resultSumArray[j]['resultSummary']++;
+					totalCorrectAnswers++
+				}
+			}
+		}
+
+		return { fetchedResults, fetchedResultsShortened, resultSumArray, totalCorrectAnswers, totalAmountQuestions }
+	},
+
 }
 </script>
 
 <template>
 	<div class="row">
 		<div class="col">
-			<h1>Results page For Teacher</h1>
+			<h1>Results page For Teacher</h1> {{ totalCorrectAnswers }} / {{ totalAmountQuestions }}
 			<p>-- Visa chart js här för överblick av hur det gick --</p>
 			<div v-for="(result, index) in resultSumArray">
-				<p>{{ result.questionId }}: {{ result.question }}. Elevers svar: {{ result.resultSummary }} rätt av {{
-					fetchedResultsShortened.length }} inkomna svar
-				</p>
+				<h5>{{ result.questionId }}: {{ result.question }}</h5>
+				<p class="mb-4">Elevers svar: {{ result.resultSummary }} rätt av {{
+					fetchedResultsShortened.length }} inkomna svar.</p>
 			</div>
-
-			<!-- går det att återanvända den här komponnent? -->
-			<!-- <TheResults :teacher="teacher" /> -->
 		</div>
 	</div>
 </template>
