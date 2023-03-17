@@ -1,15 +1,5 @@
 <template>
-    <div class="m-space">
-        <AppButton
-            @click="showForm = true"
-            color="light"
-            size="medium"
-            width="full-width"
-            fontWeight=""
-            padding="p-large"
-            >Create Quiz
-        </AppButton>
-    </div>
+    <div class="m-space"></div>
     <div>
         <button @click="showForm = true">Create Quiz</button>
         <!---Click event som triggar igång formen-->
@@ -152,7 +142,8 @@
                 })
             },
             async submitForm() {
-                // variabel som sammanställer frågorna som skapats i samma format som quizQuestions.json
+                // variabel som sammanställer frågorna som skapats i samma format som quizQuestions.json.
+                // **Glöm inte att ändra propertyn "name" till en variabel för userns eget input **
                 const postBody = [
                     {
                         id: '',

@@ -11,12 +11,18 @@ import TimerComponent from "../components/TimerComponent.vue";
 
 const currentQuestionIndex = ref(0);
 const sumOfCorrectAnswers = ref(0);
+const studentId = ref(0);
 const showResults = ref(false);
+let fetchedStudentResults = [];
 
 const route = useRoute();
-const paramsId = parseInt(route.params.id);
+const paramsId = route.params.id;
 
 const resultStore = useResultStore();
+
+// empty resultStore for new quiz
+resultStore.$reset()
+
 
 const result = await axios.get("http://localhost:8080/quiz_questions");
 const quizes = ref(result.data);
@@ -36,6 +42,23 @@ const onChoiceSelected = (isCorrect) => {
 
   if (quizToShow.questions.length - 1 === currentQuestionIndex.value) {
     showResults.value = true;
+
+    // POST to backend
+    // prepare all questions from resultStore.results
+    // to store in resultData for backend POST
+    const resultData = resultStore.results
+    console.log(resultData)
+
+    axios.post('http://localhost:8080/post/result?id=01', {
+      resultData
+    })
+      .then(response => {
+        resultStore.addResultSum({ response })
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   currentQuestionIndex.value++;
@@ -52,12 +75,13 @@ const onChoiceSelected = (isCorrect) => {
       </div>
     </section>
     <main class="main-content">
-      <ProgressBar :currentQuestion="currentQuestionIndex + 1" />
+      <ProgressBar :currentQuestion="currentQuestionIndex + 1" :quizToShow="quizToShow" />
       <div>
         <TheQuestion v-if="!showResults" :question="quizToShow.questions[currentQuestionIndex]"
           @selectChoice="onChoiceSelected" @addToResult="resultStore.addResult($event, { question, choice })" />
 
-        <TheResults v-else :quizLength="quizToShow.questions.length" :sumOfCorrectAnswers="sumOfCorrectAnswers" />
+        <TheResults v-else :studentId="studentId" :quizLength="quizToShow.questions.length"
+          :sumOfCorrectAnswers="sumOfCorrectAnswers" />
       </div>
     </main>
   </div>

@@ -12,6 +12,9 @@ export const useResultStore = defineStore("ResultStore", {
     addResult(question) {
       this.results.push({ ...question });
     },
+    addResultSum(resultForQuiz) {
+      this.fetchedResults.push({ ...resultForQuiz });
+    },
   },
   getters: {
     // get median answer from all students from fetchedResults

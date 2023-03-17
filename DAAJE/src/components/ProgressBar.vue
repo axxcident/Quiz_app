@@ -1,6 +1,7 @@
 <template>
   <div class="progress-bar">
-    <div v-for="i in 20" :key="i" :class="{ 'active': i === currentQuestion }" class="progress-bar__circle">
+    <div v-for="i in quizToShow.questions.length" :key="i" :class="{ 'active': i === currentQuestion }"
+      class="progress-bar__circle">
       {{ i }}
     </div>
   </div>
@@ -9,22 +10,25 @@
 <script>
 export default {
   props: {
+    quizToShow: {
+      type: Object,
+    },
     currentQuestion: {
       type: Number,
       required: true
     }
   },
- /*  nextQuestion: {
-    type: Function,
-    required: true
-  } */
+  /*  nextQuestion: {
+     type: Function,
+     required: true
+   } */
 }
 </script>
 
 <style>
 .progress-bar {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
