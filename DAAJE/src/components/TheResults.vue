@@ -13,57 +13,48 @@
         setup() {
             const resultStore = useResultStore()
 
-            const question = resultStore.results.question
-            const answers = resultStore.results.option
-            const results = resultStore.results
+		const question = resultStore.results.question
+		const answers = resultStore.results.option
+		const results = resultStore.results
 
-            return { question, answers, results }
-        },
-        data() {
-            return {
-                welcomeMessage: '',
-                fetchedResultData: []
-            }
-        },
-        methods: {
-            fetchResults() {
-                fetch('https://avancera.app/cities/')
-                    .then((response) => response.json())
-                    .then((result) => {
-                        this.fetchedResultData = result
-                    })
-            }
-        },
-        computed: {
-            isTeacher(teacher) {
-                if (teacher) {
-                    this.welcomeMessage = 'Welcome Richard'
-                } else {
-                    this.welcomeMessage = 'Welcome Student'
-                }
-            }
-        },
-        mounted() {
-            this.fetchResults()
-            const ctx = document.getElementById('myChart')
-            const MyChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['Rätt svar', 'Totala frågor'],
-                    datasets: [
-                        {
-                            label: 'Resultat av Quiz',
-                            data: [this.sumOfCorrectAnswers, this.quizLength],
-                            // backgroundColor: "rgba(54,73,93,.5)",
-                            // borderColor: "#36495d",
-                            borderWidth: 3
-                        }
-                    ]
-                }
-            })
-            MyChart
-        }
-    }
+		return { question, answers, results }
+	},
+	data() {
+		return {
+			welcomeMessage: '',
+			fetchedResultData: [],
+		}
+	},
+	methods: {},
+	computed: {
+		isTeacher(teacher) {
+			if (teacher) {
+				this.welcomeMessage = 'Welcome Richard'
+			} else {
+				this.welcomeMessage = 'Welcome Student'
+			}
+		}
+	},
+	mounted() {
+		const ctx = document.getElementById('myChart');
+		const MyChart = new Chart(ctx, {
+			type: "pie",
+			data: {
+				labels: ["Rätt svar", "Totala frågor"],
+				datasets: [
+					{
+						label: "Resultat av Quiz",
+						data: [this.sumOfCorrectAnswers, this.quizLength],
+						// backgroundColor: "rgba(54,73,93,.5)",
+						// borderColor: "#36495d",
+						borderWidth: 3,
+					},
+				],
+			},
+		})
+		MyChart;
+	}
+}
 </script>
 
 <template>

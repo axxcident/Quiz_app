@@ -155,7 +155,7 @@
         ]
       },
       {
-        "id": 1,
+        "id": 6,
         "text": "Vilket alternativ beskriver en computed property i Vue? ",
         "options": [
           {
@@ -639,7 +639,7 @@
             "text": "Dator",
             "isCorrect": true
           }
-        ] 
+        ]
       }
     ]
   },
@@ -676,8 +676,8 @@
             "text": "Scriptspråk",
             "isCorrect": true
           }
-        ] 
-      }      
+        ]
+      }
     ]
   }
 ]
