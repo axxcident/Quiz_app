@@ -39,13 +39,13 @@ const mwFunctions = {
 			const userQuestionsBuffer = fs.readFileSync(path.join(dataPath, 'sessionUserQuiz.json'));
 			const userQuestions = JSON.parse(userQuestionsBuffer);
 			const parsedBuffer = JSON.parse(mockQuestions);
-			console.log(`Parsed buffer: ${parsedBuffer}`);
-			console.log(Object.getOwnPropertyNames(parsedBuffer));
-			console.log(userQuestions[0]);
+			//console.log(`Parsed buffer: ${parsedBuffer}`);
+			//console.log(Object.getOwnPropertyNames(parsedBuffer));
+			//console.log(userQuestions[0]);
 
-			// if a custom quiz exists, add it to the served quizes object
+				// if a custom quiz exists, add it to the served quizes object
 			if(userQuestions[0].id) { parsedBuffer[parsedBuffer.length] = userQuestions[0] };
-			console.log(`Pushed parsed buffer: ${parsedBuffer}`);
+			//console.log(`Pushed parsed buffer: ${parsedBuffer}`);
 			res.status(200).send(parsedBuffer);
 	    },
 	assignQuizId(req, res, next) {
@@ -89,8 +89,7 @@ const mwFunctions = {
 			res.status(200).send({ msg: "Posted new quiz!", id: req.body[0].id });
 		},
 	recieveResult(req, res, next) { //recieve a new student result post. Write into temp db
-		console.log(`Recieved student result data: ${req.body.resultData}`);
-
+		console.log(`Recieved student result data: ${req.body.resultData} with length: ${req.body.resultData.length}`);
 		
 		const newPath = path.join(dataPath, "sessionResults.json");
 		if (!fs.existsSync(newPath)) {
@@ -101,7 +100,7 @@ const mwFunctions = {
 				newResult.unshift({ sessionId: uuidv4() });
 
 				// create a new file
-				fs.appendFile(newPath, JSON.stringify(newResult), (err) => {
+				fs.writeFile(newPath, JSON.stringify(newResult), (err) => {
 						if(err) { throw err };
 						console.log(`Student result data creation success`);
 						next();
