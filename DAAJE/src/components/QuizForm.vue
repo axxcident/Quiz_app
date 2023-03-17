@@ -1,15 +1,5 @@
 <template>
-    <div class="m-space">
-        <AppButton
-            @click="showForm = true"
-            color="light"
-            size="medium"
-            width="full-width"
-            fontWeight=""
-            padding="p-large"
-            >Create Quiz
-        </AppButton>
-    </div>
+    <div class="m-space"></div>
     <div>
         <button @click="showForm = true">Create Quiz</button>
         <!---Click event som triggar igång formen-->
