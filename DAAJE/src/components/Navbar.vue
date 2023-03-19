@@ -86,7 +86,7 @@ export default {
   name: "Navbar",
   data() {
     return {
-      isDropdownOpen: true,
+      isDropdownOpen: false,
     };
   },
 };
