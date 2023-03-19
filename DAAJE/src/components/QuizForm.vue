@@ -1,15 +1,5 @@
 <template>
-    <div class="m-space">
-        <AppButton
-            @click="showForm = true"
-            color="light"
-            size="medium"
-            width="full-width"
-            fontWeight=""
-            padding="p-large"
-            >Create Quiz
-        </AppButton>
-    </div>
+    <div class="m-space"></div>
     <div>
         <button @click="showForm = true">Create Quiz</button>
         <!---Click event som triggar igång formen-->
@@ -116,10 +106,10 @@
                     {
                         text: '',
                         options: [
-                            { id: 1, text: '', isCorrect: false },
-                            { id: 2, text: '', isCorrect: false },
-                            { id: 3, text: '', isCorrect: false },
-                            { id: 4, text: '', isCorrect: false }
+                            { id: 1, text: '', label: 'A', isCorrect: false },
+                            { id: 2, text: '', label: 'B',  isCorrect: false },
+                            { id: 3, text: '', label: 'C',  isCorrect: false },
+                            { id: 4, text: '', label: 'D',  isCorrect: false }
                         ],
                         correctAnswer: null
                     }
@@ -139,20 +129,29 @@
             }
         },
         methods: {
+            setTrue() {
+                const correctIndex = this.questions[this.questions.length - 1].correctAnswer - 1;
+                console.log(correctIndex);
+                this.questions[this.questions.length - 1].options[correctIndex].isCorrect = true;
+            },
             addQuestion() {
+                this.setTrue()
                 this.questions.push({
                     text: '',
                     options: [
-                        { id: 1, text: '', isCorrect: false },
-                        { id: 2, text: '', isCorrect: false },
-                        { id: 3, text: '', isCorrect: false },
-                        { id: 4, text: '', isCorrect: false }
+                        { id: 1, text: '', label: 'A',  isCorrect: false },
+                        { id: 2, text: '', label: 'B',  isCorrect: false },
+                        { id: 3, text: '', label: 'C',  isCorrect: false },
+                        { id: 4, text: '', label: 'D',  isCorrect: false }
                     ],
                     correctAnswer: null
                 })
+                
             },
             async submitForm() {
-                // variabel som sammanställer frågorna som skapats i samma format som quizQuestions.json
+                this.setTrue()  //must be called here for the last index "isCorrect" to be set.
+                // variabel som sammanställer frågorna som skapats i samma format som quizQuestions.json.
+                // **Glöm inte att ändra propertyn "name" till en variabel för userns eget input **
                 const postBody = [
                     {
                         id: '',

@@ -61,21 +61,15 @@ export default {
       </li>
 
       <li>
-        <router-link to="/quiz" @click="isDropdownOpen = false"
-          >Quiz</router-link
-        >
+        <router-link to="/quiz" @click="isDropdownOpen = false">Quiz</router-link>
       </li>
 
       <li>
-        <router-link to="/results" @click="isDropdownOpen = false"
-          >Results</router-link
-        >
+        <router-link to="/results" @click="isDropdownOpen = false">Results</router-link>
       </li>
 
       <li>
-        <router-link to="/about" @click="isDropdownOpen = false"
-          >About</router-link
-        >
+        <router-link to="/about" @click="isDropdownOpen = false">About</router-link>
       </li>
     </ul>
   </nav>
@@ -169,7 +163,7 @@ export default {
 .navbar-menu li {
   margin: 0 10px;
   padding: 10px 0;
-  
+
   border-bottom: solid 1px #fff;
 }
 
