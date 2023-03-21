@@ -2,6 +2,12 @@
 import QuizForm from "../components/QuizForm.vue";
 import UserAvatar from "../components/UserAvatar.vue";
 import QuizQuestions from "../components/QuizQuestions.vue";
+
+const props = defineProps({
+  userName: String,
+  userRole: String
+})
+
 </script>
 
 <template>
@@ -18,7 +24,7 @@ import QuizQuestions from "../components/QuizQuestions.vue";
         <div class="quiz-container">
           <QuizQuestions />
           <!-- created a specific page instead, the card "Create Quiz" on homepage navigates to the page  -->
-          <!-- <QuizForm /> --> 
+          <!-- <QuizForm /> -->
         </div>
       </main>
     </div>
@@ -29,6 +35,7 @@ import QuizQuestions from "../components/QuizQuestions.vue";
 .pt-medium {
   padding-top: 20px;
 }
+
 .hero-text {
   padding: 3rem 0.3rem;
   color: #d9d7d7;

@@ -1,3 +1,15 @@
+<script>
+import userImage from "../imgs/Richard.jpg";
+
+export default {
+  data() {
+    return {
+      avatarImg: userImage,
+    };
+  },
+};
+</script>
+
 <template>
   <section class="avatar-wrapper">
     <div class="avatar-container">
@@ -10,20 +22,7 @@
   </section>
 </template>
 
-<script>
-import userImage from "../imgs/Richard.jpg";
 
-export default {
-  data() {
-    return {
-      avatarImg: userImage,
-    };
-  },
-  
-  
-
-};
-</script>
 <style>
 .avatar-wrapper {
   display: flex;

@@ -6,22 +6,14 @@ import UserAvatar from "../components/UserAvatar.vue";
 <template>
   <div class="row wrapper">
     <div class="col pt-medium">
-      <UserAvatar
-        :img="imgPath"
-        :userGreeting="userGreeting"
-        :userDesc="userDesc"
-      />
+      <UserAvatar :img="imgPath" :userGreeting="userGreeting" :userDesc="userDesc" />
       <div class="hero-text">
         <h1>Welcome to your favorite Quiz App</h1>
         <h4>Increase your students performance!</h4>
       </div>
       <main class="main-content">
         <div class="card-wrapper">
-          <HomeCard
-            v-for="(option, index) in options"
-            :key="index"
-            :option="option"
-          />
+          <HomeCard v-for="(option, index) in options" :key="index" :option="option" />
         </div>
       </main>
     </div>
@@ -37,16 +29,16 @@ export default {
     return {
       options: [
         {
+          cardTitle: "Start a Quiz",
+          cardDescription: "Use a previous created Quiz",
+          cardButton: "Action",
+          path: "/quiz",
+        },
+        {
           cardTitle: "Create questions",
           cardDescription: "Create tailored questions for a course",
           cardButton: "Action",
           path: "/create-quiz",
-        },
-        {
-          cardTitle: "Previous Quiz",
-          cardDescription: "Use a previous created Quiz",
-          cardButton: "Action",
-          path: "/quiz",
         },
         {
           cardTitle: "Review prior results",
@@ -55,11 +47,9 @@ export default {
           path: "/quiz",
         },
       ],
-      userInfo: {
-        imgPath: "",
-        userGreeting: "Hello, Richard",
-        userDesc: "JavaScript Educator",
-      },
+      imgPath: "",
+      userGreeting: "Hello, Richard",
+      userDesc: "JavaScript Educator",
     };
   },
 };
