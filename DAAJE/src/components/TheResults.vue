@@ -40,11 +40,11 @@
 		const MyChart = new Chart(ctx, {
 			type: "pie",
 			data: {
-				labels: ["Rätt svar", "Totala frågor"],
+				labels: ["Rätt svar", "Fel svar"],
 				datasets: [
 					{
 						label: "Resultat av Quiz",
-						data: [this.sumOfCorrectAnswers, this.quizLength],
+						data: [this.sumOfCorrectAnswers, (this.quizLength-this.sumOfCorrectAnswers)],
 						// backgroundColor: "rgba(54,73,93,.5)",
 						// borderColor: "#36495d",
 						borderWidth: 3,
