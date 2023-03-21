@@ -29,16 +29,16 @@ export default {
     return {
       options: [
         {
+          cardTitle: "Start a Quiz",
+          cardDescription: "Use a previous created Quiz",
+          cardButton: "Action",
+          path: "/quiz",
+        },
+        {
           cardTitle: "Create questions",
           cardDescription: "Create tailored questions for a course",
           cardButton: "Action",
           path: "/create-quiz",
-        },
-        {
-          cardTitle: "Previous Quiz",
-          cardDescription: "Use a previous created Quiz",
-          cardButton: "Action",
-          path: "/quiz",
         },
         {
           cardTitle: "Review prior results",
