@@ -132,7 +132,12 @@
             setTrue() {
                 const correctIndex = this.questions[this.questions.length - 1].correctAnswer - 1;
                 console.log(correctIndex);
-                this.questions[this.questions.length - 1].options[correctIndex].isCorrect = true;
+                // guard clause for correct answer index not being set
+                if(correctIndex != (-1)) {
+                    this.questions[this.questions.length - 1].options[correctIndex].isCorrect = true;
+                } else {
+                    console.log("Could not create quiz with missing correct answer selection");
+                }
             },
             addQuestion() {
                 this.setTrue()
