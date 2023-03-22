@@ -16,7 +16,8 @@ const emitSelectedResult = (question, option) => {
     </h3>
   </div>
   <div class="options-container">
-    <div v-for="option in question.options" class="option" @click="emitSelectedChoise(option.isCorrect)">
+    <div v-for="option in question.options" class="option"
+      @click="emitSelectedChoise(option.isCorrect), emitSelectedResult(question, option)">
       <p class="option-label">{{ option.label }}</p>
       <div class="option-value">
         {{ option.text }}
