@@ -1,9 +1,12 @@
 <script setup>
 const { question } = defineProps(["question"]);
-const emit = defineEmits(["selectChoice"]);
+const emit = defineEmits(["selectChoice", 'addToResult']);
 const emitSelectedChoise = (isCorrect) => {
   emit("selectChoice", isCorrect);
 };
+const emitSelectedResult = (question, option) => {
+  emit('addToResult', { question, option })
+}
 </script>
 
 <template>
@@ -13,7 +16,8 @@ const emitSelectedChoise = (isCorrect) => {
     </h3>
   </div>
   <div class="options-container">
-    <div v-for="option in question.options" class="option" @click="emitSelectedChoise(option.isCorrect)">
+    <div v-for="option in question.options" class="option"
+      @click="emitSelectedChoise(option.isCorrect), emitSelectedResult(question, option)">
       <p class="option-label">{{ option.label }}</p>
       <div class="option-value">
         {{ option.text }}
