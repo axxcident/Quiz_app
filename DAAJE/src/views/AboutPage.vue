@@ -1,17 +1,19 @@
 <script setup>
 import ContactUs from "../components/ContactUs.vue";
-
 </script>
 
 <template>
     <div class="row">
         <div class="col pt-medium">
+            <div class="user-avatar-filler"></div>
             <main class="main-content">
                 <div class="card-wrapper">
                     <div class="hero-text">
                         <h1>About us</h1>
                         <h4>An independent devteam passionate about learning.</h4>
                     </div>
+                    <h1>About us</h1>
+                    <h4>An independent devteam passionate about learning.</h4>
                     <div class="textholder">
                         <p class="about-text">
                             Our development team is dedicated to crafting
@@ -22,7 +24,7 @@ import ContactUs from "../components/ContactUs.vue";
                             we strive to deliver innovative technologies that
                             enable people to learn more efficiently and
                             effectively.
-                        <p class="glitchtext"> We
+                        <p> We
                             believe that learning should be accessible to all,
                             regardless of background, age, or level of
                             expertise. That's why we design our learning apps to
@@ -31,6 +33,8 @@ import ContactUs from "../components/ContactUs.vue";
                             through each step of the process. Our aim is to make
                             learning enjoyable, engaging, and fulfilling, so
                             that learners remain motivated and achieve their
+                            goals.</p>
+                        <p>Our team is constantly pushing the limits of
                             goals.</p>
                         <p>Our team is constantly pushing the limits of
                             what's possible in learning technology, exploring
@@ -46,14 +50,19 @@ import ContactUs from "../components/ContactUs.vue";
                         </p>
                     </div>
                 </div>
-                <ContactUs />
             </main>
         </div>
+
+        <ContactUs />
     </div>
 </template>
 
 
 <style scoped>
+.user-avatar-filler {
+    height: 64px;
+}
+
 .pt-medium {
     padding-top: 20px;
 }
@@ -88,6 +97,8 @@ import ContactUs from "../components/ContactUs.vue";
     margin-bottom: 1rem;
 }
 
+p,
+h4,
 .about-text {
     text-align: center;
     color: #ffffff;
@@ -108,4 +119,5 @@ import ContactUs from "../components/ContactUs.vue";
 
 .glitchtext {
     padding-top: 1rem;
-}</style>
+}
+</style>
