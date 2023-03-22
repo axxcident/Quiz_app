@@ -1,6 +1,6 @@
 <script setup>
 const { question } = defineProps(["question"]);
-const emit = defineEmits(["selectChoice"]);
+const emit = defineEmits(["selectChoice", 'addToResult']);
 const emitSelectedChoise = (isCorrect) => {
   emit("selectChoice", isCorrect);
 };
