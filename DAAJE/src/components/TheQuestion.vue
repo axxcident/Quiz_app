@@ -4,6 +4,9 @@ const emit = defineEmits(["selectChoice"]);
 const emitSelectedChoise = (isCorrect) => {
   emit("selectChoice", isCorrect);
 };
+const emitSelectedResult = (question, option) => {
+  emit('addToResult', { question, option })
+}
 </script>
 
 <template>
