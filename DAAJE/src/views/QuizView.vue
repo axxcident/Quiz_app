@@ -47,10 +47,10 @@ const onChoiceSelected = (isCorrect) => {
     // prepare all questions from resultStore.results
     // to store in resultData for backend POST
     const resultData = resultStore.results //<-- När den här variabeln skapas så har arrayen 19 index.
-                                           //    Det utökas senare (asynkront?) till 20 men då har post requesten
-                                           //    redan skickats. Servern tar bara emot 19 index från en array på 20
-                                           //    frågor. Detta kan vara en av orsakerna till formateringsfelen.
-    console.log(resultData)  
+    //    Det utökas senare (asynkront?) till 20 men då har post requesten
+    //    redan skickats. Servern tar bara emot 19 index från en array på 20
+    //    frågor. Detta kan vara en av orsakerna till formateringsfelen.
+    console.log(resultData)
 
     axios.post('http://localhost:8080/post/result?id=01', {
       resultData
@@ -124,7 +124,7 @@ export default {
 }
 
 .main-content {
-	height: 100vh;
+  height: 100vh;
   margin: 0 -20px;
   padding: 120px 20px 0 20px;
   border-top-left-radius: 40px;
