@@ -99,7 +99,9 @@
 
 <style scoped>
     .col-lg-8  {
-        max-height: 500px;
+        max-height: 440px;
+        max-width: 90%;
+        min-width: 20em;
     }
     .container {
         display: flex;
@@ -108,19 +110,19 @@
         position: static;
         height: 100%;
         border-radius: 3rem;
-        overflow-y: scroll;
+        overflow-y: auto;
+        max-width: 600px;
         margin-top: auto;
-        background-color: rgba(255, 255, 255, 0.84);
+        background-color: rgba(255, 255, 255, 0.844);
     }
 
     .row {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        max-width: 800px;
         align-items: center;
         overflow: visible;
-        width: 100%;
-        max-width: 800px;
-        padding: 20px;
+        max-width: 90%;
+        padding: 10%;
     }
 </style>
