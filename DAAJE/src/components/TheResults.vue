@@ -98,25 +98,29 @@
 </template>
 
 <style scoped>
+    .col-lg-8  {
+        max-height: 500px;
+    }
     .container {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: 5rem;
+        position: static;
+        height: 100%;
+        border-radius: 3rem;
+        overflow-y: scroll;
+        margin-top: auto;
+        background-color: rgba(255, 255, 255, 0.84);
     }
 
     .row {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        overflow: visible;
         width: 100%;
         max-width: 800px;
         padding: 20px;
-        background-color: #fff;
-        border-radius: 10rem;
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     }
 </style>

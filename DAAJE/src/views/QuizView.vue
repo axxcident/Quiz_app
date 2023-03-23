@@ -8,7 +8,7 @@ import axios from "axios";
 import ProgressBar from "../components/ProgressBar.vue";
 import UserAvatar from "../components/UserAvatar.vue";
 import TimerComponent from "../components/TimerComponent.vue";
-import { markRaw, toRaw } from 'vue';
+//import { markRaw, toRaw } from 'vue';
 
 const currentQuestionIndex = ref(0);
 const sumOfCorrectAnswers = ref(0);
