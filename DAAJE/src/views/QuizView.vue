@@ -8,6 +8,7 @@ import axios from "axios";
 import ProgressBar from "../components/ProgressBar.vue";
 import UserAvatar from "../components/UserAvatar.vue";
 import TimerComponent from "../components/TimerComponent.vue";
+//import { markRaw, toRaw } from 'vue';
 
 const currentQuestionIndex = ref(0);
 const sumOfCorrectAnswers = ref(0);
@@ -35,7 +36,7 @@ const completionPercentage = computed(
   () => `${(currentQuestionIndex.value / quizToShow.questions.length) * 100}%`
 );
 
-const onChoiceSelected = (isCorrect) => {
+const onChoiceSelected = async (isCorrect) => {
   if (isCorrect) {
     sumOfCorrectAnswers.value++;
   }
@@ -46,11 +47,9 @@ const onChoiceSelected = (isCorrect) => {
     // POST to backend
     // prepare all questions from resultStore.results
     // to store in resultData for backend POST
-    const resultData = resultStore.results //<-- När den här variabeln skapas så har arrayen 19 index.
-    //    Det utökas senare (asynkront?) till 20 men då har post requesten
-    //    redan skickats. Servern tar bara emot 19 index från en array på 20
-    //    frågor. Detta kan vara en av orsakerna till formateringsfelen.
-    console.log(resultData)
+    //                 ** Await necessary when communicating with the store and sending data.
+    //                 Incomplete objects were being sent!! **
+    const resultData = await resultStore.results;
 
     axios.post('http://localhost:8080/post/result?id=01', {
       resultData

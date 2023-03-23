@@ -89,7 +89,7 @@ const mwFunctions = {
 			res.status(200).send({ msg: "Posted new quiz!", id: req.body[0].id });
 		},
 	recieveResult(req, res, next) { //recieve a new student result post. Write into temp db
-		console.log(`Recieved student result data: ${req.body.resultData} with length: ${req.body.resultData.length}`);
+		//console.log(`Recieved student result data: ${req.body.resultData} with length: ${req.body.resultData.length}`);
 		
 		const newPath = path.join(dataPath, "sessionResults.json");
 		if (!fs.existsSync(newPath)) {
