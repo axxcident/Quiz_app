@@ -11,6 +11,8 @@ export default {
 	setup() {
 		const resultStore = useResultStore();
 		const fetchedResults = resultStore.fetchedResults;
+		// guard clause for empty result array
+		if (fetchedResults.length > 0) {
 		const fetchedResultsShortened = [...fetchedResults[0].response.data.slice(1)];
 
 		let resultSumArray = [];
@@ -50,6 +52,12 @@ export default {
 		}
 
 		return { fetchedResults, fetchedResultsShortened, resultSumArray, totalCorrectAnswers, totalAmountQuestions }
+
+		} else { // do this if no results are in the store
+			console.log("Error: No results in store");
+			window.location.href = "/";
+			alert("Sorry, no results are in yet!");
+		}
 	},
 	mounted() {
 		// 	const ctx = document.getElementById('myChart');
