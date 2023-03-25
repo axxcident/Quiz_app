@@ -69,13 +69,11 @@ const onChoiceSelected = async (isCorrect) => {
 
 <template>
   <div class="wrapper">
-    <section class="pt-medium">
-      <UserAvatar :userName="userName" :userRole="userRole" />
-      <div class="hero-section">
-        <h1>Vue.js Quiz</h1>
-        <TimerComponent />
-      </div>
-    </section>
+    <UserAvatar :userName="userName" :userRole="userRole" />
+    <div class="hero-section">
+      <h1>Vue.js Quiz</h1>
+      <TimerComponent />
+    </div>
     <main class="main-content">
       <ProgressBar :currentQuestion="currentQuestionIndex + 1" :quizToShow="quizToShow" />
       <div>
