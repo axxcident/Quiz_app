@@ -1,59 +1,59 @@
 <script>
-    import Chart from 'chart.js/auto'
-    import { useResultStore } from '../stores/resultStore'
+import Chart from 'chart.js/auto'
+import { useResultStore } from '../stores/resultStore'
 
-    export default {
-        name: 'TheResults',
-        props: {
-            quizLength: Number,
-            sumOfCorrectAnswers: Number,
-            studentId: Number,
-            teacher: Boolean
-        },
-        setup() {
-            const resultStore = useResultStore()
+export default {
+    name: 'TheResults',
+    props: {
+        quizLength: Number,
+        sumOfCorrectAnswers: Number,
+        studentId: Number,
+        teacher: Boolean
+    },
+    setup() {
+        const resultStore = useResultStore()
 
-		const question = resultStore.results.question
-		const answers = resultStore.results.option
-		const results = resultStore.results
+        const question = resultStore.results.question
+        const answers = resultStore.results.option
+        const results = resultStore.results
 
-		return { question, answers, results }
-	},
-	data() {
-		return {
-			welcomeMessage: '',
-			fetchedResultData: [],
-		}
-	},
-	methods: {},
-	computed: {
-		isTeacher(teacher) {
-			if (teacher) {
-				this.welcomeMessage = 'Welcome Richard'
-			} else {
-				this.welcomeMessage = 'Welcome Student'
-			}
-		}
-	},
-	mounted() {
-		const ctx = document.getElementById('myChart');
-		const MyChart = new Chart(ctx, {
-			type: "pie",
-			data: {
-				labels: ["Rätt svar", "Fel svar"],
-				datasets: [
-					{
-						label: "Resultat av Quiz",
-						data: [this.sumOfCorrectAnswers, (this.quizLength-this.sumOfCorrectAnswers)],
-						// backgroundColor: "rgba(54,73,93,.5)",
-						// borderColor: "#36495d",
-						borderWidth: 3,
-					},
-				],
-			},
-		})
-		MyChart;
-	}
+        return { question, answers, results }
+    },
+    data() {
+        return {
+            welcomeMessage: '',
+            fetchedResultData: [],
+        }
+    },
+    methods: {},
+    computed: {
+        isTeacher(teacher) {
+            if (teacher) {
+                this.welcomeMessage = 'Welcome Richard'
+            } else {
+                this.welcomeMessage = 'Welcome Student'
+            }
+        }
+    },
+    mounted() {
+        const ctx = document.getElementById('myChart');
+        const MyChart = new Chart(ctx, {
+            type: "pie",
+            data: {
+                labels: ["Rätt svar", "Fel svar"],
+                datasets: [
+                    {
+                        label: "Resultat av Quiz",
+                        data: [this.sumOfCorrectAnswers, (this.quizLength - this.sumOfCorrectAnswers)],
+                        // backgroundColor: "rgba(54,73,93,.5)",
+                        // borderColor: "#36495d",
+                        borderWidth: 3,
+                    },
+                ],
+            },
+        })
+        MyChart;
+    }
 }
 </script>
 
@@ -80,14 +80,11 @@
                             )[0].text
                         }}
                     </p>
-                    <p
-                        class="pb-3"
-                        :style="{
-                            color: result.option.isCorrect
-                                ? '#198754'
-                                : '#dc3545'
-                        }"
-                    >
+                    <p class="pb-3" :style="{
+                        color: result.option.isCorrect
+                            ? '#198754'
+                            : '#dc3545'
+                    }">
                         Du valde: {{ result.option.label }}.
                         {{ result.option.text }}
                     </p>
@@ -98,31 +95,25 @@
 </template>
 
 <style scoped>
-    .col-lg-8  {
-        max-height: 440px;
-        max-width: 90%;
-        min-width: 20em;
-    }
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: static;
-        height: 100%;
-        border-radius: 3rem;
-        overflow-y: auto;
-        max-width: 600px;
-        margin-top: auto;
-        background-color: rgba(255, 255, 255, 0.844);
-    }
+h3 {
+    text-align: center;
+}
 
-    .row {
-        display: flex;
-        flex-direction: column;
-        max-width: 800px;
-        align-items: center;
-        overflow: visible;
-        max-width: 90%;
-        padding: 10%;
-    }
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3rem;
+    overflow-x: hidden;
+    margin-top: auto;
+    background-color: rgba(255, 255, 255, 0.844);
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: visible;
+    padding: 1rem 0;
+}
 </style>
