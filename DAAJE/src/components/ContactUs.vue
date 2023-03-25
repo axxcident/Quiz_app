@@ -10,23 +10,27 @@ import AppButton from './AppButton.vue';
         <div class="row contact-us">
             <div class="col contact-block">
                 <h3>Johan Hellberg</h3>
-                <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
-                <!-- <a href="https://www.linkedin.com/in/johan-hellberg-805078167/" class="linkedin-button">LinkedIn</a> -->
+                <a href="https://www.linkedin.com/in/johan-hellberg-805078167/" target="_blank">
+                    <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
+                </a>
             </div>
             <div class="col contact-block">
                 <h3>Elis Nilsén</h3>
-                <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
-                <!-- <a href="https://www.linkedin.com/in/elis-nilz%C3%A9n-78526b19b/" class="linkedin-button">LinkedIn</a> -->
+                <a href="https://www.linkedin.com/in/elis-nilz%C3%A9n-78526b19b/" target="_blank">
+                    <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
+                </a>
             </div>
             <div class="col contact-block">
                 <h3>Damir Dervovic</h3>
-                <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
-                <!-- <a href="https://www.linkedin.com/in/damir-dervovic-7265a3210/" class="linkedin-button">LinkedIn</a> -->
+                <a href="https://www.linkedin.com/in/damir-dervovic-7265a3210/" target="_blank">
+                    <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
+                </a>
             </div>
             <div class="col contact-block">
                 <h3>Daniel Naseri</h3>
-                <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
-                <!-- <a href="https://www.linkedin.com/in/daniel-naseri-899933197/" class="btn btn-success">LinkedIn</a> -->
+                <a href="https://www.linkedin.com/in/daniel-naseri-899933197/" target="_blank">
+                    <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
+                </a>
             </div>
         </div>
     </div>
