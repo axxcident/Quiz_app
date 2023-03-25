@@ -21,9 +21,7 @@ export default {
 </script>
 <style scoped>
 .container {
-  padding: 0 1.2rem;
-  /* extra padding + btstrap col padding*/
-  min-height: 100%;
+  padding: 0 1.3rem;
 
   background-color: #a4508b;
   background-image: linear-gradient(286deg, #a4508b 0%, #5f0a87 84%);
