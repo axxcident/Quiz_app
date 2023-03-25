@@ -26,15 +26,6 @@ export default {
         }
     },
     methods: {},
-    computed: {
-        isTeacher(teacher) {
-            if (teacher) {
-                this.welcomeMessage = 'Welcome Richard'
-            } else {
-                this.welcomeMessage = 'Welcome Student'
-            }
-        }
-    },
     mounted() {
         const ctx = document.getElementById('myChart');
         const MyChart = new Chart(ctx, {
@@ -61,7 +52,6 @@ export default {
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <p>{{ welcomeMessage }}</p>
                 <h3>Resultat av ditt quiz!</h3>
                 <canvas id="myChart"></canvas>
                 <h3 class="mb-3">Enskilda resultat av frågor:</h3>
