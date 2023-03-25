@@ -1,11 +1,16 @@
 <script>
 import { useResultStore } from "../stores/resultStore"
+import UserAvatar from "../components/UserAvatar.vue"
 import Chart from 'chart.js/auto'
 
 export default {
+	components: {
+		UserAvatar
+	},
 	data() {
 		return {
-			teacher: true
+			userName: "Richard",
+			userRole: "JavaScript Educator",
 		}
 	},
 	setup() {
@@ -82,25 +87,42 @@ export default {
 </script>
 
 <template>
-	<div class="row">
-		<div class="col">
-			<h1 class="mb-2 mt-2">Results page For Teacher</h1>
-			<h3 class="mb-3">Total results for this quiz</h3>
-			<h4 class="mb-4"> Totalt {{ totalCorrectAnswers }} rätt, från {{ totalAmountQuestions }} frågor med,
-				{{ fetchedResultsShortened.length }} inlämande quizzes</h4>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<UserAvatar :userName="userName" :userRole="userRole" />
+				<h1 class="mb-2 mt-2">Total results for this quiz</h1>
 
-			<canvas id="myChart"></canvas>
+				<main class="main-content">
+					<canvas id="myChart"></canvas>
 
-			<div v-for="(result, index) in resultSumArray">
-				<h5>{{ result.questionId }}: {{ result.question }}</h5>
-				<p class="mb-4">Elevers svar: {{ result.resultSummary }} rätt av {{
-					fetchedResultsShortened.length }} inkomna svar.</p>
+					<div class="sum-results">
+						<h4 class="mb-4">Totalt {{ totalCorrectAnswers }} rätt,
+							från {{ totalAmountQuestions }} frågor.</h4>
+						<h4>Totalt
+							{{ fetchedResultsShortened.length }} inlämande quizzes</h4>
+					</div>
+
+					<div v-for="(result, index) in resultSumArray">
+						<h5>{{ result.questionId }}: {{ result.question }}</h5>
+						<p class="mb-4">Elevers svar: {{ result.resultSummary }} rätt av {{
+							fetchedResultsShortened.length }} inkomna svar.</p>
+					</div>
+				</main>
 			</div>
 		</div>
 	</div>
 </template>
 
 <style scoped>
+.sum-results {
+	padding-top: 1.3rem;
+	padding-bottom: 1.8rem;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+
 h1,
 h4,
 h5,
@@ -110,5 +132,23 @@ p {
 
 h3 {
 	color: gray;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3rem;
+	overflow-x: hidden;
+	margin-top: auto;
+	background-color: rgba(255, 255, 255, 0.844);
+}
+
+.row {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: visible;
+	padding: 1rem 0;
 }
 </style>
