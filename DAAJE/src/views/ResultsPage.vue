@@ -80,6 +80,18 @@ export default {
 					},
 				],
 			},
+			options: {
+				plugins: {
+					legend: {
+						labels: {
+							color: 'white',
+							font: {
+								Size: 18
+							}
+						}
+					}
+				}
+			}
 		})
 		MyChart;
 	}
@@ -105,7 +117,7 @@ export default {
 
 					<div v-for="(result, index) in resultSumArray">
 						<h5>{{ result.questionId }}: {{ result.question }}</h5>
-						<p class="mb-4">Elevers svar: {{ result.resultSummary }} rätt av {{
+						<p class="mb-5">Elevers svar: {{ result.resultSummary }} rätt av {{
 							fetchedResultsShortened.length }} inkomna svar.</p>
 					</div>
 				</main>
@@ -128,10 +140,6 @@ h4,
 h5,
 p {
 	color: white;
-}
-
-h3 {
-	color: gray;
 }
 
 .container {
