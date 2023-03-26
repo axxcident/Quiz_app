@@ -21,12 +21,12 @@ export default {
 footer {
   display: flex;
   justify-content: center;
-  align-items: flex-end;  
+  align-items: center;
   font-size: 16px;
-  height: 60px;
-  background: blueviolet;
+  height: 80px;
+  background-color: #a4508b;
+  background-image: linear-gradient(286deg, #a4508b 0%, #5f0a87 84%);
   color: aliceblue;
   margin: 0 -20px;
 }
-
 </style>
