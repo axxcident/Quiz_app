@@ -26,3 +26,4 @@ dist-ssr
 # Writeable server data
 devserver/public/data/sessionUserQuiz.json
 devserver/public/data/sessionResults.json
+DAAJE\devserver\package-lock.json
